@@ -62,12 +62,12 @@ int main(){
         cout<<"Please enter you choice here: ";
         cin>>tt;
 
+        int id, quantity;
         switch (tt)
         {
         case 1:
-            int id, quantity;
             cout<<"Please enter the id of item: ";
-            cin>>foo;
+            cin>>id;
             cout<<endl;
             cout<<"Please enter the quantity: ";
             cin>>quantity
@@ -76,7 +76,6 @@ int main(){
             break;
 
         case 2:
-            int id;
             cout<<"Please enter the id of the item: ";
             cin>>id;
             cout<<endl;
@@ -84,7 +83,6 @@ int main(){
             break;
         
         case 3:
-            int id, quantity;
             cout<<"Please enter the id of the item: ";
             cin>>id;
             cout<<endl;
@@ -95,7 +93,6 @@ int main(){
             break;
 
         case 4:
-            int id;
             cout<<"Please enter the id of the item: ";
             cin>>id;
             cout<<endl;
