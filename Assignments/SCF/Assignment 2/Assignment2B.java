@@ -1,10 +1,12 @@
 // The objective of this assignment is to design FCFS(First Come First Serve) algorithm based job scheduling program
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Assignment2B {
     public static void main(String[] args) {
-        int[][] tasks = {{0, 10}, {6, 20}, {60, 10}, {110, 5}};
+        int[][] tasks = {{6, 20},{0, 10},  {60, 10}, {110, 5}};
+        Arrays.sort(tasks,(x,y) -> Integer.compare(x[0], y[0]));
         int currentTime = 0;
         ArrayList<Integer> completionTimes = new ArrayList<>();
         ArrayList<Integer> waitingTimes = new ArrayList<>();
