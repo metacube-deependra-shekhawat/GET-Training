@@ -1,3 +1,6 @@
+// The objective of this assignment is to design a Hexadecimal Numbers Calculator
+// The following class demonstrates the same
+
 import java.util.Scanner;
 
 public class Assignment2A {
@@ -26,7 +29,7 @@ public class Assignment2A {
             if (character <= '9' && character >= '0') {
                 value = character - '0';
             } else {
-                if(character >= 'A' && character <= 'B'){
+                if(character >= 'A' && character <= 'F'){
                     value = character - 'A' + 10;
                 } else {
                     value = character - 'a' + 10;
@@ -40,6 +43,7 @@ public class Assignment2A {
     // This method will convert a decimal number to a hexadecimal string and returns it.
     public static String toHex(int number) {
         StringBuilder hexString = new StringBuilder();
+        if(number == 0) return "0";
         while (number > 0) {
             int remainder = number % 16;
             number /= 16;
@@ -60,21 +64,67 @@ public class Assignment2A {
         if(h1.length() > h2.length()) return 1;
         else if(h1.length() < h2.length()) return -1;
         else {
-        int n = h1.length();
-        for(int i = 0; i < n; i++){
-            char c1 = h1.charAt(i);
-            char c2 = h2.charAt(i);
-            int n1 = (c1 <= 'F' && c1 >= 'A') ? 10 + (c1 - 'A') : (c1-'0');
-            int n2 = (c2 <= 'F' && c2 >= 'A') ? 10 + (c2 - 'A') : (c2-'0');
-            if(n1 == n2) continue;
-            else if(n1 < n2){
-                return -1;
-            } else {
-                return 1;
+            int n = h1.length();
+            for(int i = 0; i < n; i++){
+                char c1 = h1.charAt(i);
+                char c2 = h2.charAt(i);
+                int n1 = (c1 <= 'F' && c1 >= 'A') ? 10 + (c1 - 'A') : (c1-'0');
+                int n2 = (c2 <= 'F' && c2 >= 'A') ? 10 + (c2 - 'A') : (c2-'0');
+                if(n1 == n2) {
+                } else if(n1 < n2){
+                    return -1;
+                } else {
+                    return 1;
+                }
             }
+            return 0;
+        }  
+    }
+
+    // This method will add two hexadecimal numbers
+    public static void addNumbers(String h1, String h2){
+        int num1 = toDec(h1);
+        int num2 = toDec(h2);
+        int tempOutput = num1+num2;
+        String output = toHex(tempOutput);
+        System.out.println("Output: " + output);
+    }
+
+    //This method will subtract one hexadecimal number from another
+    public static void subtractNumbers(String h1, String h2){
+        int num1 = toDec(h1);
+        int num2 = toDec(h2);
+        int tempOutput = num1-num2;
+        String output = toHex(tempOutput);
+        System.out.println("Output: " + output);
+    }
+
+    // This method will multiply two hexadecimal numbers
+    public static void multiplyNumbers(String h1, String h2){
+        int num1 = toDec(h1);
+        int num2 = toDec(h2);
+        int tempOutput = num1*num2;
+        String output = toHex(tempOutput);
+        System.out.println("Output: " + output);
+    }
+
+    // This method will divide one hexadecimal number from another
+    public static void divideNumbers(String h1, String h2){
+        int num1 = toDec(h1);
+        int num2 = toDec(h2);
+        int tempOutput = num1/num2;
+        String output = toHex(tempOutput);
+        System.out.println("Output: " + output);
+    }
+
+    // This method will compare two hexadecimal numbers
+    public static void compareNumbers(String h1, String h2){
+        int res = compare(h1, h2);
+        switch (res) {
+            case -1 -> System.out.println("First Number is smaller than Second number");
+            case 1 -> System.out.println("First Number is greater than Second number");
+            default -> System.out.println("Both Numbers are equal");
         }
-        return 0;
-     }
     }
 
     public static void main(String[] args) {
@@ -94,24 +144,24 @@ public class Assignment2A {
             hexInput2 = scanner.nextLine();
         }
 
-        int decimalValue1 = toDec(hexInput1);
-        int decimalValue2 = toDec(hexInput2);
-        if (decimalValue1 < decimalValue2) {
-            int temp = decimalValue1;
-            decimalValue1 = decimalValue2;
-            decimalValue2 = temp;
-        }
-
-        int sum = decimalValue1 + decimalValue2;
-        int difference = decimalValue1 - decimalValue2;
-        int product = decimalValue1 * decimalValue2;
-        int quotient = decimalValue1 / decimalValue2;
-
-        String hexSum = toHex(sum);
-        String hexDifference = toHex(difference);
-        String hexProduct = toHex(product);
-        String hexQuotient = toHex(quotient);
-
-        System.out.println(hexSum + " " + hexDifference + " " + hexProduct + " " + hexQuotient);
+        int input;
+        System.out.println("Type 1 to add two Hexadecimal Numbers");
+        System.out.println("Type 2 to subtract two Hexadecimal Numbers");
+        System.out.println("Type 3 to multipy two Hexadecimal Numbers");
+        System.out.println("Type 4 to divide two Hexadecimal Numbers");
+        System.out.println("Type 5 to compare two Hexadecimal Numbers");
+        System.out.println("Type 6 to exit");
+        input = scanner.nextInt();
+        switch (input) {
+            case 1 -> addNumbers(hexInput1,hexInput2);
+            case 2 -> subtractNumbers(hexInput1,hexInput2);
+            case 3 -> multiplyNumbers(hexInput1,hexInput2);
+            case 4 -> divideNumbers(hexInput1,hexInput2);
+            case 5 -> compareNumbers(hexInput1,hexInput2);
+            case 6 -> {
+                return;
+            }
+            default -> System.out.println("Please select a valid option and try again");
+        }  
     }
 }
