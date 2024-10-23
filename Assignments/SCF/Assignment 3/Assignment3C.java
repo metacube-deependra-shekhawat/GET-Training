@@ -1,82 +1,209 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-class Assignment3C {
+interface Shapes {
+    public double getArea();
+};
+
+class Triangle implements Shapes {
+    double height, base;
 
     /**
-     * This method will receive two parameters as arguments of type 'double' and calculate
-     * the area of a triangle and returns a double value
-     * @param height
-     * @param width
-     * @return double
+     * 
+     * @param height double
+     * @param base double
      */
-    public static double calculateAreaTriangle(double height, double width){
-        double area = (double)(height/2)*width;
-        return area;
+    Triangle(double height,double base) {
+        this.height = height;
+        this.base = base;
+    }
+    
+    /**
+     * This method will return the area of triangle
+     */
+    @Override
+    public double getArea(){
+        return (double)(height / 2) * base;
+    }
+}
+
+class Square implements Shapes{
+    double side;
+
+    /**
+     * 
+     * @param side double
+     */
+    Square(double side) {
+        this.side = side;
     }
 
     /**
-     * This method will receive one argument of type 'double' and calculate the area of 
-     * a square and return a double value
-     * @param side
+     * This method will return area of square
+     * @return double
+     */  
+    @Override
+    public double getArea(){
+        return (double)(side * side);
+    }
+}
+
+class Rectangle implements Shapes {
+    double width, length;
+
+    /**
+     * 
+     * @param width double
+     * @param length double
+     */
+    Rectangle(double width,double length) {
+        this.length = length;
+        this.width = width;
+    }
+    
+    /**
+     * This method will return area of rectangle
      * @return double
      */
-    public static double calculateAreaSquare(double side){
-        double area = (double)(side * side);
-        return area;
+    @Override
+    public double getArea(){
+        return (double)(width * length);
+    }
+}
+
+class Circle implements Shapes {
+    static double pi = 3.14;
+    double radius;
+
+    /**
+     * @param radius double
+     */
+    Circle(double radius){
+        this.radius = radius;
     }
 
     /**
-     * This method will receive two argument of type 'double' and calculate the area of 
-     * a rectangle and return a double value
-     * @param length
-     * @param width
+     * This method will return the area of a Circle
      * @return double
      */
-    public static double calculateAreaRectangle(double length, double width){
-        double area = (double)(length * width);
-        return area;
+    @Override
+    public double getArea(){
+        return (double)(pi * radius * radius);
     }
+}
 
-    /**
-     * This method will receive one argument of type 'double' and calculate the area of 
-     * a circle and return a double value
-     * @param radius
-     * @return double
-     */
-    public static double calculateAreaCircle(double radius){
-        double area = (double)(radius * radius * 3.14);
-        return area;
-    }
+public class Assignment3C {
     public static void main(String[] args) {
-        int choice;
-        Scanner scn = new Scanner(System.in);
-        System.out.println("Select a shape to find the area for:");
-        System.out.println("Type 1 for Triangle");
-        System.out.println("Type 2 for Square");
-        System.out.println("Type 3 for Rectangle");
-        System.out.println("Type 4 for Circle");
-        System.out.print("Please enter you choice here: ");
-        choice = scn.nextInt();
-        switch (choice) {
-            case 1 -> {
-                double triangleHeight = scn.nextInt();
-                double triangleWidth = scn.nextInt();
-                System.out.println(calculateAreaTriangle(triangleHeight, triangleWidth));
+        Scanner scn = new Scanner(System.in);   
+        while (true){
+            System.out.println("Please Select on the following option");
+            System.out.println("1 for Calculating Triangle's area");
+            System.out.println("2 for Calculating Square's area");
+            System.out.println("3 for Calculating Rectangle's area");
+            System.out.println("4 for Calculating Circle's area");
+            System.out.println("5 for Exiting");
+            int input = scn.nextInt();
+            switch (input) {
+                case 1 -> {
+                    double h,b;
+                    while(true){
+                        try {
+                            scn.nextLine();
+                            System.out.print("Please enter the height of the Triangle: ");
+                            h = scn.nextDouble();
+                            System.out.print("Please enter the base of the Triangle: ");
+                            b = scn.nextDouble();
+                            if(h < 0 || b < 0){
+                                throw new Exception("Not a valid number");
+                            }
+                            break;
+                        }
+                         catch (InputMismatchException e) {
+                            System.out.println("Invalid inputs, please try again");
+                        } catch (Exception e){
+                            System.out.println("Not a valid number");
+                        }
+                    }
+                    Shapes triangle = new Triangle(h, b);
+                    System.out.println(triangle.getArea());
+                }
+                case 2 -> {
+                    double side;
+                    while (true) { 
+                        try {
+                            System.out.print("Please enter the length of side of square: ");
+                            side = scn.nextDouble();
+                            if(side < 0){
+                                throw new Exception("Not valid input");
+                            }
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid inputs, please try again");
+                        } catch (Exception e){
+                            System.out.println("Not a valid number");
+                        }
+                    }
+                    Shapes square = new Square(side);
+                    System.out.println(square.getArea());
+                }
+                case 3 -> {
+                    double l,w;
+                    while(true){
+                        try {
+                            scn.nextLine();
+                            System.out.print("Please enter the length of the Triangle: ");
+                            l = scn.nextDouble();
+                            System.out.print("Please enter the width of the Triangle: ");
+                            w = scn.nextDouble();
+                            if(l < 0 || w < 0){
+                                throw new Exception("Not a valid number");
+                            }
+                            break;
+                        }
+                         catch (InputMismatchException e) {
+                            System.out.println("Invalid inputs, please try again");
+                        } catch (Exception e){
+                            System.out.println("Not a valid number");
+                        }
+                    }                                          
+                    Shapes rectangle = new Rectangle(w, l);
+                    System.out.println(rectangle.getArea());
+                }
+                case 4 -> {
+                    double radius;
+                    while (true) { 
+                        try {
+                            scn.next();
+                            System.out.println("Please enter the radius of circle");
+                            radius = scn.nextDouble();                           
+                            if(radius < 0){
+                                throw new Exception("Not valid input");
+                            }
+                            break;
+                        } catch (InputMismatchException e){
+                            System.out.println("Invalid input, try again");
+                        } catch (Exception e) {
+                            System.out.println("Not a valid number");
+                        }
+                    }
+                    System.out.print("Please enter the radius of side of circle: ");
+                    radius = scn.nextDouble();
+                    while(radius < 0){
+                        System.out.println("Wrong inputs! Please enter again");
+                        System.out.print("Please enter the radius of side of circle: ");
+                        radius = scn.nextDouble();
+                    }
+                    Shapes circle = new Circle(radius);
+                    System.out.println(circle.getArea());
+                }
+                case 5 ->{
+                    scn.close();
+                    return;
+                }
+                default -> {
+                    throw new AssertionError();
+                }
             }
-            case 2 -> {
-                double squareSide = scn.nextInt();
-                System.out.println(calculateAreaSquare(squareSide));
-            }
-            case 3 -> {
-                double rectLength = scn.nextInt();
-                double rectWidth = scn.nextInt();
-                System.out.println(calculateAreaRectangle(rectLength, rectWidth));
-            }
-            case 4 -> {
-                double circleRadius = scn.nextInt();
-                System.out.println(calculateAreaCircle(circleRadius));
-            }
-            default -> throw new AssertionError();
         }
     }
 }

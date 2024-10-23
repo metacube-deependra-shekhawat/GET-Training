@@ -2,57 +2,53 @@ import java.util.Scanner;
 
 public class Assignment3A {
 
-    /*
-     * This method will first scan two strings and then compare them whether if they are equal or not
-     * print 0 in case the strings are not eqaul or 1 if equal
+    /**
+     * This method will receive two strings as input and compare them whether they are eqaual or not
+     * if equal this method will return 1 else 0
+     * @param s1 String
+     * @param s2 String
+     * @return int
      */
-    public static void compareStrings(){
-        Scanner scanner = new Scanner(System.in);
-        String s1,s2;
-        System.out.println("Please enter the first string");
-        s1 = scanner.nextLine();
-        System.out.println("Please enter the second string");
-        s2 = scanner.nextLine();
+    public static int compareStrings(String s1, String s2){
         if(s1.length() != s2.length()){
-            System.out.println(0);
+            return 0;
         } else {
             for(int i = 0; i < s1.length(); i++){
                 if(s1.charAt(i) != s2.charAt(i)){
-                    System.out.println(0);
-                    return;
+                    return 0;
                 }
             }
-            System.out.println(1);
         }
+        return 1;
     }
 
-    /*
-     * This method will first scan a string, reverse it and then print it to the console
+    /**
+     * This method will receive string as input and reverse it and return it back
+     * @param s String
+     * @return String
      */
-    public static void reverseString(){
-        Scanner scanner = new Scanner(System.in);
-        String s;
-        s = scanner.nextLine();
-        StringBuffer sb = new StringBuffer(s);
+    public static String reverseString(String s){
+        StringBuilder sb = new StringBuilder(s);
         int l = 0, r = sb.length()-1;
         while(l < r){
             char leftChar = sb.charAt(l);
             char rightChar = sb.charAt(r);
             sb.setCharAt(r, leftChar);
             sb.setCharAt(l, rightChar);
+            l++;
+            r--;
         }
         s = sb.toString();
-        System.out.println(s);
+        return s;
     }
 
     /**
-     * This method will first scan a string, toggle the cases for every character in a string
-     * and the print it to the console
+     * This method will toggle the cases of every character in a string say a->A and A->a and return the string
+     * @param s String
+     * @return String
      */
-    public static void toggleCases(){
-        Scanner scanner = new Scanner(System.in);
-        String s = scanner.nextLine();
-        StringBuffer sb = new StringBuffer(s);
+    public static String toggleCases(String s){
+        StringBuilder sb = new StringBuilder(s);
         for(int i = 0; i < sb.length(); i++){
             char ch = sb.charAt(i);
             if(ch >= 'a' && ch <= 'z'){
@@ -63,29 +59,30 @@ public class Assignment3A {
             sb.setCharAt(i, ch);
         }
         s = sb.toString();
-        System.out.println(s);
+        return s;
     }
 
-    /*
-     * This method will first scan a string as input and find the longest word in the string
-     * and print that word to the console
+    /**
+     * This method will find the word with the longest length in the given string
+     * @param s String
+     * @return String
      */
-    public static void findLongest(){
-        Scanner scanner = new Scanner(System.in);
-        String s = scanner.nextLine();
+    public static String findLongest(String s){
         int i = 0, j = 0, n = s.length();
         int maxLen = 0;
         String ans = "";
         while(j < n){
             while(j < n && s.charAt(j) != ' ') j++;
             if(j-i > maxLen){
-                ans = s.substring(i,j-1);
+                ans = s.substring(i,j);
                 maxLen = j-i;
             }
-            i = j+1;
-            j++;
+            while(j < n && s.charAt(j) == ' '){
+                j++;
+            }
+            i = j;
         }
-        System.out.println(ans);
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -97,21 +94,35 @@ public class Assignment3A {
         System.out.println("Select 3 to toggle the cases of characters in a string");
         System.out.println("Select 4 to find the word with longest length in a string");
         input = scanner.nextInt();
+        scanner.nextLine();
         switch (input) {
-            case 1:
-                compareStrings();
-                break;
-            case 2:
-                reverseString();
-                break;
-            case 3:
-                toggleCases();
-                break;
-            case 4:
-                findLongest();
-                break;
-            default:
-                System.out.println("Not a valid input");
+            case 1 -> {
+                String s1,s2;
+                System.out.print("Please enter the first string: ");
+                s1 = scanner.nextLine();
+                System.out.print("Please enter the second string: ");
+                s2 = scanner.nextLine();
+                System.out.println(compareStrings(s1,s2));
+            }
+            case 2 -> {
+                System.out.print("Please enter the string to reverse: ");
+                String sr = scanner.nextLine();
+                System.out.println();
+                System.out.println(reverseString(sr));
+            }
+            case 3 -> {
+                System.out.print("Please enter the string to toggle: ");
+                String st = scanner.nextLine();
+                System.out.println();
+                System.out.println(toggleCases(st));
+            }
+            case 4 -> {
+                System.out.println("Please enter the string to find the longest word in it");
+                String sw = scanner.nextLine();
+                System.out.println();
+                System.out.println(findLongest(sw));
+            }
+            default -> System.out.println("Not a valid input");
         }
     }
 }

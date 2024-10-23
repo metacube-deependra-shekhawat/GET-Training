@@ -1,18 +1,36 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Assignment3B {
     int noOfStudents;
     ArrayList<Integer> marks = new ArrayList<>();
-    public Assignment3B(int noOfStudents) {
+
+    /**
+     * Constructor for the class which take an integer as input and then takes grades input from console
+     * and store them into an ArrayList
+     * @param noOfStudents
+     */
+    Assignment3B(int noOfStudents) {
         Scanner scn = new Scanner(System.in);
         this.noOfStudents = noOfStudents;
         for(int i = 0; i < noOfStudents; i++){
-            System.out.print("Please enter the marks of Student no. " + (i+1) + ": ");
-            int mark = scn.nextInt();
-            while(mark > 100 || mark < 0){
-                System.out.println("Not a valid grade, please enter a correct grade between 0 - 100");
-                mark = scn.nextInt();
+            int mark;
+            while(true){
+                try {
+                    System.out.print("Please enter the marks of Student no. " + (i+1) + ": ");
+                    mark = scn.nextInt();
+                    if(mark < 0 || mark > 100){
+                        throw new Exception();
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Not a valid input type");
+                    scn.nextLine();
+                } catch (Exception e) {
+                    System.out.println("Not a valid grade, please enter a correct grade between 0 - 100");
+                }
             }
             marks.add(mark);
         }
