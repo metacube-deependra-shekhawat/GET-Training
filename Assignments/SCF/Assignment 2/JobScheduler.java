@@ -3,7 +3,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class JobScheduler {
+class Scheduler {
     private int[][] tasks;
     private int currentTime = 0;
     private int totalWaitingTime = 0;
@@ -12,13 +12,14 @@ class JobScheduler {
     private ArrayList<Integer> waitingTimes = new ArrayList<>();
     private ArrayList<Integer> turnAroundTimes = new ArrayList<>();
     
-    JobScheduler(int[][] tasks){
+    Scheduler(int[][] tasks){
         this.tasks = tasks;
         Arrays.sort(this.tasks,(x,y) -> Integer.compare(x[0], y[0]));
         for (int[] task : this.tasks) {
             int startingTimeForProcess = Math.max(currentTime, task[0]);
             int endingTimeForProcess = startingTimeForProcess + task[1];
             waitingTimes.add(Math.max(0, currentTime - task[0]));
+            totalWaitingTime += Math.max(0, currentTime-task[0]);
             completionTimes.add(endingTimeForProcess);
             turnAroundTimes.add(endingTimeForProcess - task[0]);
             currentTime = endingTimeForProcess;
@@ -65,14 +66,12 @@ class JobScheduler {
         int maxWaitingPeriod = waitingTimes.stream().max(Integer::compare).orElse(0);
         System.out.println(maxWaitingPeriod);
     }
-
 }        
 
-public class Assignment2B {
+public class JobScheduler {
     public static void main(String[] args) {
-        int[][] tasks = {{0,10,},{6,20},{60,10},{110,5}};
-        JobScheduler scheduler = new JobScheduler(tasks);
-        scheduler.showAverageWaitingTime();
+        int[][] tasks = {{4,10},{2,5},{8,14},{20,10}};
+        Scheduler scheduler = new Scheduler(tasks);
         scheduler.showCompletionTime();
         scheduler.showTurnAroundTime();
         scheduler.showWaitingTime();

@@ -3,7 +3,7 @@
 
 import java.util.Scanner;
 
-public class Assignment2A {
+public class HexCalculator {
    
     /**
      * This method receives a string as input and check whether the string represents a valid hexadecimal
@@ -12,11 +12,16 @@ public class Assignment2A {
      * @return a boolean representing the result of validation
      */
     public static boolean isValid(String hexString) {
+        StringBuilder sb = new StringBuilder(hexString);
         for (int i = 0; i < hexString.length(); i++) {
-            if ((hexString.charAt(i) >= '0' && hexString.charAt(i) <= '9') || 
-            (hexString.charAt(i) >= 'A' && hexString.charAt(i) <= 'F') || 
-            (hexString.charAt(i) >= 'a' && hexString.charAt(i) <= 'f')) {
-                continue;
+            if ((sb.charAt(i) >= '0' && sb.charAt(i) <= '9') || 
+            (sb.charAt(i) >= 'A' && sb.charAt(i) <= 'F') || 
+            (sb.charAt(i) >= 'a' && sb.charAt(i) <= 'f')) {
+                if(sb.charAt(i) >= 'a' && sb.charAt(i) <= 'f'){
+                    char ch = sb.charAt(i);
+                    ch -= 32;
+                    sb.setCharAt(i, ch);
+                }
             } else {
                 return false;
             }
@@ -126,9 +131,8 @@ public class Assignment2A {
         int num1 = toDec(h1);
         int num2 = toDec(h2);
         if(num1 < num2){
-            int temp = num1;
-            num1 = num2;
-            num2 = temp;
+            System.out.println("Subtraction leads to a negative value, try different values");
+            return;
         }
         int tempOutput = num1-num2;
         String output = toHex(tempOutput);
@@ -159,8 +163,11 @@ public class Assignment2A {
         int num1 = toDec(h1);
         int num2 = toDec(h2);
         int tempOutput = num1/num2;
+        int tempRem = num1%num2;
         String output = toHex(tempOutput);
+        String rem = toHex(tempRem);
         System.out.println("Output: " + output);
+        System.out.println("Remainder: " + rem);
     }
 
     /**

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Assignment3B {
+public class MarksGrading {
     int noOfStudents;
     ArrayList<Integer> marks = new ArrayList<>();
 
@@ -11,7 +11,7 @@ public class Assignment3B {
      * and store them into an ArrayList
      * @param noOfStudents
      */
-    Assignment3B(int noOfStudents) {
+    MarksGrading(int noOfStudents) {
         Scanner scn = new Scanner(System.in);
         this.noOfStudents = noOfStudents;
         for(int i = 0; i < noOfStudents; i++){
@@ -80,7 +80,7 @@ public class Assignment3B {
         return passingPercent;
     }
     public static void main(String[] args) {
-        Assignment3B grades = new Assignment3B(10);              
+        MarksGrading grades = new MarksGrading(10);              
         System.out.println(grades.maximumGrade());
         System.out.println(grades.minimumGrade());
         System.out.println(grades.averageGrade());

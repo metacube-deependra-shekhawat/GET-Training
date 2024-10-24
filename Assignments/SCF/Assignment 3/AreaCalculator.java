@@ -92,7 +92,7 @@ class Circle implements Shapes {
     }
 }
 
-public class Assignment3C {
+public class AreaCalculator {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);   
         while (true){

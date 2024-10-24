@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Assignment3A {
+public class StringOps {
 
     /**
      * This method will receive two strings as input and compare them whether they are eqaual or not
