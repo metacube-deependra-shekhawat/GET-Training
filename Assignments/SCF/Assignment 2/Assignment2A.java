@@ -5,7 +5,12 @@ import java.util.Scanner;
 
 public class Assignment2A {
    
-    // This method will check if the given hexadecimal input is correct or not.
+    /**
+     * This method receives a string as input and check whether the string represents a valid hexadecimal
+     * number or not and returns an boolean for the same
+     * @param hexString which needs to be validated
+     * @return a boolean representing the result of validation
+     */
     public static boolean isValid(String hexString) {
         for (int i = 0; i < hexString.length(); i++) {
             if ((hexString.charAt(i) >= '0' && hexString.charAt(i) <= '9') || 
@@ -19,7 +24,12 @@ public class Assignment2A {
         return true;
     }
 
-    // This method will convert the Hexadecimal string to a decimal number and returns it.
+    /**
+     * This method takes an hexadecimal number as string as input and then convert the number to
+     * an equivalent decimal number and return it
+     * @param hexString which needs to converted into integer
+     * @return returns the integer value
+     */
     public static int toDec(String hexString) {
         int length = hexString.length();
         int number = 0;
@@ -40,7 +50,12 @@ public class Assignment2A {
         return number;
     }
 
-    // This method will convert a decimal number to a hexadecimal string and returns it.
+    /**
+     * This method takes an decimal number as integer as input and then convert the number to
+     * an equivalent hexadecimal number string and return it
+     * @param hexString which needs to converted into integer
+     * @return returns the integer value
+     */
     public static String toHex(int number) {
         StringBuilder hexString = new StringBuilder();
         if(number == 0) return "0";
@@ -59,7 +74,13 @@ public class Assignment2A {
         return hexString.reverse().toString();
     }
 
-    // This method will compare two hexadecimal numbers
+    /**
+     * This method will receive two strings as input and check whether which string is greater and which one is smaller
+     * and prints the result
+     * @param h1
+     * @param h2
+     * @return
+     */
     public static int compare(String h1, String h2){
         if(h1.length() > h2.length()) return 1;
         else if(h1.length() < h2.length()) return -1;
@@ -81,7 +102,12 @@ public class Assignment2A {
         }  
     }
 
-    // This method will add two hexadecimal numbers
+     /**
+     * This method will receive two Hexadecimal strings and convert them into decimal numbers, add them and 
+     * convert the output back to Hexadecimal string and print it
+     * @param h1
+     * @param h2
+     */
     public static void addNumbers(String h1, String h2){
         int num1 = toDec(h1);
         int num2 = toDec(h2);
@@ -90,16 +116,31 @@ public class Assignment2A {
         System.out.println("Output: " + output);
     }
 
-    //This method will subtract one hexadecimal number from another
+     /**
+     * This method will receive two Hexadecimal strings and convert them into decimal numbers, subtract them and 
+     * convert the output back to Hexadecimal string and print it
+     * @param h1
+     * @param h2
+     */
     public static void subtractNumbers(String h1, String h2){
         int num1 = toDec(h1);
         int num2 = toDec(h2);
+        if(num1 < num2){
+            int temp = num1;
+            num1 = num2;
+            num2 = temp;
+        }
         int tempOutput = num1-num2;
         String output = toHex(tempOutput);
         System.out.println("Output: " + output);
     }
 
-    // This method will multiply two hexadecimal numbers
+     /**
+     * This method will receive two Hexadecimal strings and convert them into decimal numbers, multiply them and 
+     * convert the output back to Hexadecimal string and print it
+     * @param h1
+     * @param h2
+     */
     public static void multiplyNumbers(String h1, String h2){
         int num1 = toDec(h1);
         int num2 = toDec(h2);
@@ -108,7 +149,12 @@ public class Assignment2A {
         System.out.println("Output: " + output);
     }
 
-    // This method will divide one hexadecimal number from another
+    /**
+     * This method will receive two Hexadecimal strings and convert them into decimal numbers, divide them and 
+     * convert the output back to Hexadecimal string and print it
+     * @param h1
+     * @param h2
+     */
     public static void divideNumbers(String h1, String h2){
         int num1 = toDec(h1);
         int num2 = toDec(h2);
@@ -117,7 +163,11 @@ public class Assignment2A {
         System.out.println("Output: " + output);
     }
 
-    // This method will compare two hexadecimal numbers
+    /**
+     * This method will receive two strings as input and will compare whether which among them is greater and smaller
+     * @param h1 String
+     * @param h2 String
+     */
     public static void compareNumbers(String h1, String h2){
         int res = compare(h1, h2);
         switch (res) {

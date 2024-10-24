@@ -14,10 +14,16 @@ class Item {
     }
 }
 
-public class Main {
+public class Assignment1{
     private static Map<Integer, Integer> cart = new HashMap<>();
     private static int total = 0;
 
+    /**
+     * This method will receive an Item object and and integer value named quantity and will
+     * add the item to the cart and add the cost to a total variable
+     * @param Item object
+     * @param integer quantity
+     */
     public static void addItemToCart(Item item, int quantity) {
         if (cart.containsKey(item.id)) {
             System.out.println("Item is already present in the cart, consider updating the quantity");
@@ -27,6 +33,10 @@ public class Main {
         total += (cart.get(item.id) * item.price);
     }
 
+    /**
+     * This method will receive and Item object and will then show the quantity of the item
+     * @param item
+     */
     public static void showQuantity(Item item) {
         if (!cart.containsKey(item.id)) {
             System.out.println("No such item in cart.");
@@ -35,12 +45,22 @@ public class Main {
         System.out.println("The quantity of this item is: " + cart.get(item.id));
     }
 
+    /**
+     * This method will receive an Item object and a new quantity integer and will update the quantity of the item
+     * int the cart and will update the total cost accordingly
+     * @param Item object
+     * @param int newQuantity
+     */
     public static void updateQuantity(Item item, int newQuantity) {
         total -= (cart.get(item.id) * item.price);
         cart.put(item.id, newQuantity);
         total += (cart.get(item.id) * item.price);
     }
 
+    /**
+     * This method will receive an Item as an input and will delete the item from the cart
+     * @param Item object
+     */
     public static void deleteItem(Item item) {
         if (!cart.containsKey(item.id)) {
             System.out.println("Item not present in the cart");
