@@ -39,7 +39,9 @@ public class Factors {
     public static void main(String[] args) {
         Factors factor = new Factors();
         int hcf = factor.findHCF(10,7);
+        int lcm = factor.findLCM(5, 20, 1);
         System.out.println(hcf);
+        System.out.println(lcm);
     }
 
 }

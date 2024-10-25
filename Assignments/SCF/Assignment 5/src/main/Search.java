@@ -67,5 +67,10 @@ public class Search {
         return bSearch(arr,0,arr.length-1,target);
     }
 
-    public static void main(String[] args) {}
+    public static void main(String[] args) {
+        Search search = new Search();
+        int[] arr = {1,4,3,5,4,3,7,5,2,6};
+        System.out.println(search.binarySearch(arr, 6));
+        System.out.println(search.linearSearch(arr, 6));
+    }
 }
