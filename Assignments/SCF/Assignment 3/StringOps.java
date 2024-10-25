@@ -52,7 +52,7 @@ public class StringOps {
         for(int i = 0; i < sb.length(); i++){
             char ch = sb.charAt(i);
             if(ch >= 'a' && ch <= 'z'){
-                ch -= 32;
+                ch -= 32; //a->97 A->65
             } else if(ch >= 'A' && ch <= 'Z'){
                 ch += 32;
             }
@@ -73,7 +73,7 @@ public class StringOps {
         String ans = "";
         while(j < n){
             while(j < n && s.charAt(j) != ' ') j++;
-            if(j-i > maxLen){
+            if(j-i >= maxLen){
                 ans = s.substring(i,j);
                 maxLen = j-i;
             }

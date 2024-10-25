@@ -155,7 +155,7 @@ public class ShoppingCart{
                     }
                     System.out.println("Items in your cart");
                     for (Map.Entry<String,Integer> entry : cart.entrySet()){
-                        System.out.println(entry.getKey() + "Quantity: " + entry.getValue());
+                        System.out.println(entry.getKey() + " Quantity: " + entry.getValue());
                     }
                     System.out.print("Please enter the name of the item to delete: ");
                     scanner.nextLine();

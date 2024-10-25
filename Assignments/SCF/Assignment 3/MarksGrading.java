@@ -43,7 +43,9 @@ public class MarksGrading {
     public double averageGrade(){
         int total = 0;
         for(int i = 0 ; i < noOfStudents; i++) total += marks.get(i);
-        return (double)(total/noOfStudents);
+        double temp = ((double)total/noOfStudents);
+        double roundOff = Math.round(temp * 100.0) / 100.0;
+        return roundOff;
     }
 
     /**
@@ -76,11 +78,16 @@ public class MarksGrading {
         for(int i = 0; i < noOfStudents; i++){
             if(marks.get(i) >= 40) noOfPassedStudents++;
         }
-        double passingPercent = (double)((100 * noOfPassedStudents) / noOfStudents);
-        return passingPercent;
+        double passingPercent = ((100 * (double)noOfPassedStudents) / noOfStudents);
+        double roundOff = Math.round(passingPercent * 100.0) / 100.0;
+        return roundOff;
     }
     public static void main(String[] args) {
-        MarksGrading grades = new MarksGrading(10);              
+        int n = 0;
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Please enter the number of students: ");
+        n = scn.nextInt();
+        MarksGrading grades = new MarksGrading(n);              
         System.out.println(grades.maximumGrade());
         System.out.println(grades.minimumGrade());
         System.out.println(grades.averageGrade());

@@ -23,7 +23,9 @@ class Triangle implements Shapes {
      */
     @Override
     public double getArea(){
-        return (double)(height / 2) * base;
+        double temp = (height / 2) * base;
+        double area = Math.round(temp * 100.0) / 100.0;
+        return area;
     }
 }
 
@@ -44,7 +46,9 @@ class Square implements Shapes{
      */  
     @Override
     public double getArea(){
-        return (double)(side * side);
+        double temp = ((double)side * side);
+        double area = Math.round(temp * 100.0) / 100.0;
+        return area;
     }
 }
 
@@ -67,7 +71,9 @@ class Rectangle implements Shapes {
      */
     @Override
     public double getArea(){
-        return (double)(width * length);
+        double temp =  ((double)width * length);
+        double area = Math.round(temp * 100.0) / 100.0;
+        return area;
     }
 }
 
@@ -88,7 +94,9 @@ class Circle implements Shapes {
      */
     @Override
     public double getArea(){
-        return (double)(pi * radius * radius);
+        double temp = ((double)pi * radius * radius);
+        double area = Math.round(temp * 100.0) / 100.0;
+        return area;
     }
 }
 
@@ -173,7 +181,6 @@ public class AreaCalculator {
                     double radius;
                     while (true) { 
                         try {
-                            scn.next();
                             System.out.println("Please enter the radius of circle");
                             radius = scn.nextDouble();                           
                             if(radius < 0){
@@ -185,13 +192,6 @@ public class AreaCalculator {
                         } catch (Exception e) {
                             System.out.println("Not a valid number");
                         }
-                    }
-                    System.out.print("Please enter the radius of side of circle: ");
-                    radius = scn.nextDouble();
-                    while(radius < 0){
-                        System.out.println("Wrong inputs! Please enter again");
-                        System.out.print("Please enter the radius of side of circle: ");
-                        radius = scn.nextDouble();
                     }
                     Shapes circle = new Circle(radius);
                     System.out.println(circle.getArea());
