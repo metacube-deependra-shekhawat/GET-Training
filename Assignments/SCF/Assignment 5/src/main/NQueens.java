@@ -33,7 +33,9 @@ public class NQueens {
      * @param row number of row in which the queen is to be placed
      * @return return a boolean if it is possible to place queen at a certain position
      */
-    private boolean placeQueens(int row) {
+    private boolean placeQueens(int row) {  //  0 0 1
+                                            //  0 0 0
+                                            //  1 0 1
         if (row == n) return true;
         for (int col = 0; col < n; col++) {
             if (isSafe(row, col)) {
@@ -77,7 +79,7 @@ public class NQueens {
     }
 
     public static void main(String[] args) {
-        NQueens nQueens = new NQueens(6);
+        NQueens nQueens = new NQueens(4);
         nQueens.solveNQueens();
     }
 }

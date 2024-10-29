@@ -9,7 +9,7 @@ public class Factors {
      * @param fact potential common factor
      * @return integer lcm of x and y
      */
-    public int findLCM(int x, int y, int multiple) {
+    public int findLCM(int x, int y, int multiple) { // num1 * num2 = lcm * hcf     5,7 -> fun(5,7,7)->fun(5,7,1)->fun(5,7,35)
         if (x == 0 || y == 0) {
             throw new AssertionError("Cannot compute LCM for zero values.");
         }

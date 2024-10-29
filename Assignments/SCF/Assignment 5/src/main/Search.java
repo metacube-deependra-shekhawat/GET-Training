@@ -31,12 +31,12 @@ public class Search {
         if(l > r){
             return -1;
         }
-        int mid = l + (r-l)/2;
+        int mid = l + (r-l)/2;  
         if(arr[mid] == target) return mid;
         else if(arr[mid] > target){
             return bSearch(arr,l,mid-1,target);
         } else {
-            return bSearch(arr, l+1, r, target);
+            return bSearch(arr, mid+1, r, target);
         }
     }
 

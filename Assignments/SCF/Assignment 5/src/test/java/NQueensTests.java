@@ -9,31 +9,31 @@ import org.junit.jupiter.api.Test;
 
 public class NQueensTests {
     @Test
-    public void testNQueen4() {
+    public void fourQueens() {
         NQueens nQueens = new NQueens(4);
         assertTrue(nQueens.solveNQueens());
     }
 
     @Test
-    public void testNQueen8() {
+    public void eightQueens() {
         NQueens nQueens = new NQueens(8);
         assertTrue(nQueens.solveNQueens());
     }
 
     @Test
-    public void testNQueen2() {
+    public void twoQueens() {
         NQueens nQueens = new NQueens(2);
         assertFalse(nQueens.solveNQueens());
     }
 
     @Test
-    public void testNQueen3() {
+    public void threeQueens() {
         NQueens nQueens = new NQueens(3);
         assertFalse(nQueens.solveNQueens());
     }
 
     @Test
-    public void testNQueen1() {
+    public void oneQueen() {
         NQueens nQueens = new NQueens(1);
         assertTrue(nQueens.solveNQueens());
     }

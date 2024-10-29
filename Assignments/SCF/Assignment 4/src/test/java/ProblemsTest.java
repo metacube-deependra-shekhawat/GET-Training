@@ -15,7 +15,7 @@ import main.java.Problems;
 public class ProblemsTest{
     Problems prob = new Problems();
     @Test
-    public void fixXY_Test1() {
+    public void normalTest() {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8};
         int x = 2;
         int y = 3;
@@ -24,7 +24,7 @@ public class ProblemsTest{
     }
 
     @Test
-    public void fixXY_Test2() {
+    public void yAlreadyAfterX() {
         int[] arr = {1, 2, 3, 2, 3, 4};
         int x = 2;
         int y = 3;
@@ -33,7 +33,7 @@ public class ProblemsTest{
     }
 
     @Test
-    public void fixXY_Test3() {
+    public void alreadyValidLong() {
         int[] arr = {1, 2, 3, 2, 3, 2, 3};
         int x = 2;
         int y = 3;
@@ -42,7 +42,7 @@ public class ProblemsTest{
     }
 
     @Test
-    public void fixXY_Test4() {
+    public void xAtLast() {
         int[] arr = {1, 2, 3, 2, 3, 2};
         int x = 2;
         int y = 3;
@@ -53,7 +53,7 @@ public class ProblemsTest{
     }
 
     @Test
-    public void fixXY_Test5() {
+    public void consecutiveX() {
         int[] arr = {1, 2, 2, 3, 4};
         int x = 2;
         int y = 3;
@@ -64,7 +64,7 @@ public class ProblemsTest{
     }
 
     @Test
-    public void fixXY_Test6() {
+    public void unequalXY() {
         int[] arr = {1, 2, 3, 2, 4};
         int x = 2;
         int y = 3;
@@ -75,7 +75,7 @@ public class ProblemsTest{
     }
 
     @Test
-    public void fixXY_Test7() {
+    public void emptyArray() {
         int[] arr = {};
         int x = 2;
         int y = 3;
@@ -86,7 +86,7 @@ public class ProblemsTest{
     }
 
     @Test
-    public void fixXY_Test8() {
+    public void noXY() {
         int[] arr = {1, 4, 5, 6};
         int x = 2;
         int y = 3;
@@ -95,7 +95,7 @@ public class ProblemsTest{
     }
 
     @Test
-    public void findClums_Test1() {
+    public void emptyArray() {
         int[] arr = {};
         AssertionError exception = assertThrows(AssertionError.class, () -> {
             prob.findClums(arr);
@@ -104,42 +104,42 @@ public class ProblemsTest{
     }
 
     @Test
-    public void findClums_Test2() {
+    public void noClump() {
         int[] arr = {1, 2, 3, 4, 5};
         int expected = 0;
         assertEquals(expected, prob.findClums(arr));
     }
 
     @Test
-    public void findClums_Test3() {
+    public void singleClump() {
         int[] arr = {1, 1, 2, 3, 4};
         int expected = 1;
         assertEquals(expected, prob.findClums(arr));
     }
 
     @Test
-    public void findClums_Test4() {
+    public void multipleClumps() {
         int[] arr = {1, 1, 2, 2, 3, 3, 4};
         int expected = 3;
         assertEquals(expected, prob.findClums(arr));
     }
 
     @Test
-    public void findClums_Test5() {
+    public void multipleClumpsOfDifferentSizes() {
         int[] arr = {1, 1, 1, 2, 2, 3, 3, 3};
         int expected = 3;
         assertEquals(expected, prob.findClums(arr));
     }
 
     @Test
-    public void findClums_Test6() {
+    public void allElementsAreSame() {
         int[] arr = {1, 1, 1, 1, 1};
         int expected = 1; // Only one group of duplicates
         assertEquals(expected, prob.findClums(arr));
     }
 
     @Test
-    public void findClums_Test7() {
+    public void singleElementInArray() {
         int[] arr = {1};
         int expected = 0; // No clumps
         assertEquals(expected, prob.findClums(arr));

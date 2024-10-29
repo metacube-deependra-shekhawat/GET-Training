@@ -20,7 +20,7 @@ public class Problems {
         for(int i = 0; i < n; i++){
             rarr[i] = arr[n-i-1];
         }
-        int maxm = 0;
+        int maxm = 0; // dp[i][j] = longest subarray till arr[i], rarr[j]
         for (int i = n - 1; i >= 0; i--) {
             for (int j = n - 1; j >= 0; j--) {
                 if (arr[i] == rarr[j])

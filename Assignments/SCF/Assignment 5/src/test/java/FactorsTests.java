@@ -10,17 +10,17 @@ public class FactorsTests {
     
     Factors factor = new Factors();
      @Test
-    public void lcmTest1() {
+    public void lcmOfTwoPositiveNumbers() {
         assertEquals(12, factor.findLCM(4, 6, 1));
     }
 
     @Test
-    public void lcmTest2() {
+    public void lcmOfSameNumbers() {
         assertEquals(7, factor.findLCM(7, 7, 1));
     }
 
     @Test
-    public void lcmTest3() {
+    public void lcmOfZero() {
         AssertionError exception = assertThrows(AssertionError.class, () -> {
             factor.findLCM(0,5,1);
         });
@@ -28,27 +28,27 @@ public class FactorsTests {
     }
 
     @Test
-    public void lcmTest4() {
+    public void lcmOfNegativeNumber() {
         assertEquals(12, factor.findLCM(-4, 6, 1));
     }
 
     @Test
-    public void hcfTest1() {
+    public void hcfOfTwoPositiveNumbers() {
         assertEquals(4, factor.findHCF(8, 12));
     }
 
     @Test
-    public void hcfTest2() {
+    public void hcfOfSameNumbers() {
         assertEquals(7, factor.findHCF(7, 7));
     }
 
     @Test
-    public void hcfTest3() {
+    public void hcfOfNegativeNumber() {
         assertEquals(6, factor.findHCF(-12, 18));
     }
 
     @Test
-    public void hcfTest4() {
+    public void hcfOfZero() {
         assertEquals(5, factor.findHCF(0, 5));
     }
 }
