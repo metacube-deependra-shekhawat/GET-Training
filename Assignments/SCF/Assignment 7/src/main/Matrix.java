@@ -1,4 +1,4 @@
-
+package main;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -19,10 +19,10 @@ final class Mat{
         // matrixMap = (HashMap<Integer, Integer>) Map.copyOf(map);
     }
 
-    private Mat getTranspose(Mat mat){
-        int[][] newInput = new int[mat.matrixMap.size()][3];
+    public Mat getTranspose(){
+        int[][] newInput = new int[this.matrixMap.size()][3];
         int i = 0;
-        for (Map.Entry<Integer, Integer> entry : mat.matrixMap.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : this.matrixMap.entrySet()) {
             Integer key = entry.getKey();
             Integer value = entry.getValue();
             int r = key/N;
@@ -34,15 +34,15 @@ final class Mat{
         return new Mat(row,col,newInput);
     }
 
-    private boolean isSymmetric(Mat mat){
-        for(Map.Entry<Integer, Integer> entry: mat.matrixMap.entrySet()){
+    public boolean isSymmetric(){
+        for(Map.Entry<Integer, Integer> entry: this.matrixMap.entrySet()){
             Integer key = entry.getKey();
             Integer value = entry.getValue();
             int r = key/N;
             int c = key%N;
             int newKey = c*N+r;
-            if(mat.matrixMap.containsKey(newKey)){
-                if(!Objects.equals(mat.matrixMap.get(newKey), value)){
+            if(this.matrixMap.containsKey(newKey)){
+                if(!Objects.equals(this.matrixMap.get(newKey), value)){
                     return false;
                 }
             } else {
@@ -90,9 +90,9 @@ final class Mat{
         if(mat1.col != mat2.row){
             throw new AssertionError("Multiplication not possible");
         }
-        HashMap<Integer,Integer> map = new HashMap(); 
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>(); 
         for(int i = 0; i < mat1.row; i++){
-            for(int j = 0; j < mat1.col; j++){
+            for(int j = 0; j <= mat1.col; j++){
                 for(int k = 0; k < mat2.col; k++){
                     int mat1Key = i*N+k;
                     int mat2Key = k*N+j;
@@ -138,19 +138,20 @@ final class Mat{
 
 public class Matrix {
     public static void main(String[] args) {
-    //    int n1 = 3, m1 = 3;
-    //    int n2 = 3, m2 = 3;
-    //    int[][] matInput1 = {{0,0,4},{0,2,7},{1,1,5},{1,2,3},{2,2,6}};
-    //    int[][] matInput2 = {{0,0,5},{0,1,3},{1,0,8},{1,2,5},{2,1,5}};
-    //    Mat mat1 = new Mat(3,3,matInput1);
-    //    Mat mat2 = new Mat(3,3,matInput2);
-    //    Mat mat3 = Mat.addMatrix(mat1, mat2);
-    //    mat3.display();
-        int[][] matInput1 = {{0,0,1},{0,1,1},{1,0,2},{1,1,2},{2,0,3},{2,1,3}};
-        int[][] matInput2 = {{0,0,1},{0,1,1},{0,2,1},{1,0,2},{1,1,2},{1,2,2}};
-        Mat mat1 = new Mat(3,2,matInput1);
-        Mat mat2 = new Mat(2,3,matInput2);
-        Mat mat3 = Mat.multiplyMatrix(mat1, mat2);
+        int n1 = 3, m1 = 3;
+        int n2 = 3, m2 = 3;
+        int[][] matInput1 = {{0,0,4},{0,2,7},{1,1,5},{1,2,3},{2,2,6}};
+        int[][] matInput2 = {{0,0,5},{0,1,3},{1,0,8},{1,2,5},{2,1,5}};
+        Mat mat1 = new Mat(3,3,matInput1);
+        Mat mat2 = new Mat(3,3,matInput2);
+        Mat mat3 = Mat.addMatrix(mat1, mat2);
         mat3.display();
+        System.out.println();
+        int[][] matInput11 = {{0,0,1},{0,1,1},{1,0,2},{1,1,2},{2,0,3},{2,1,3}};
+        int[][] matInput12 = {{0,0,1},{0,1,1},{0,2,1},{1,0,2},{1,1,2},{1,2,2}};
+        Mat mat11 = new Mat(3,2,matInput11);
+        Mat mat12 = new Mat(2,3,matInput12);
+        Mat mat13 = Mat.multiplyMatrix(mat11, mat12);
+        mat13.display();
     }
 }
