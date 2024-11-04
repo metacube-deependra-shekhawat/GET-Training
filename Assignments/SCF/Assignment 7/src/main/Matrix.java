@@ -19,6 +19,9 @@ final class Mat{
         // matrixMap = (HashMap<Integer, Integer>) Map.copyOf(map);
     }
 
+    /**
+     * @return the transpose matrix
+     */
     public Mat getTranspose(){
         int[][] newInput = new int[this.matrixMap.size()][3];
         int i = 0;
@@ -34,6 +37,9 @@ final class Mat{
         return new Mat(row,col,newInput);
     }
 
+    /**
+     * @return returns an boolean if a matrix is symmetrix or not
+     */
     public boolean isSymmetric(){
         for(Map.Entry<Integer, Integer> entry: this.matrixMap.entrySet()){
             Integer key = entry.getKey();
@@ -52,6 +58,11 @@ final class Mat{
         return true;
     }
 
+    /**
+     * @param mat1 First Matrix object
+     * @param mat2 Second Matrix object
+     * return mat Matrix which is addition of two matrices
+     */
     static public Mat addMatrix(Mat mat1, Mat mat2){
         if(mat1.row != mat2.row && mat1.col != mat2.col){
             throw new AssertionError("Dimension of the matrices are not same");
@@ -86,6 +97,11 @@ final class Mat{
         return new Mat(mat1.row,mat1.col,newInput);
     }
 
+    /**
+     * @param mat1 First Matrix object
+     * @param mat2 Second Matrix object
+     * @return  mat new matrix which is multiplication of two matrices
+     */
     static public Mat multiplyMatrix(Mat mat1, Mat mat2){
         if(mat1.col != mat2.row){
             throw new AssertionError("Multiplication not possible");
@@ -121,6 +137,10 @@ final class Mat{
         }
         return new Mat(mat1.row,mat2.col,newInput);
     }
+
+    /**
+     * Method to display a matrix
+     */
     public void display(){
         for(int i = 0; i < this.row; i++){
             for(int j = 0; j < this.col; j++){
