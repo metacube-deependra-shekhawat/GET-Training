@@ -1,10 +1,11 @@
 package main;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 final class Mat{
-    HashMap<Integer, Integer> matrixMap;
+    final private HashMap<Integer, Integer> matrixMap;
     private final static int N = 999;
     private final int row,col;
     Mat(int row, int col, int[][] input){
@@ -19,13 +20,10 @@ final class Mat{
         // matrixMap = (HashMap<Integer, Integer>) Map.copyOf(map);
     }
 
-    /**
-     * @return the transpose matrix
-     */
-    public Mat getTranspose(){
-        int[][] newInput = new int[this.matrixMap.size()][3];
+    private Mat getTranspose(Mat mat){
+        int[][] newInput = new int[mat.matrixMap.size()][3];
         int i = 0;
-        for (Map.Entry<Integer, Integer> entry : this.matrixMap.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : mat.matrixMap.entrySet()) {
             Integer key = entry.getKey();
             Integer value = entry.getValue();
             int r = key/N;
@@ -37,18 +35,15 @@ final class Mat{
         return new Mat(row,col,newInput);
     }
 
-    /**
-     * @return returns an boolean if a matrix is symmetrix or not
-     */
-    public boolean isSymmetric(){
-        for(Map.Entry<Integer, Integer> entry: this.matrixMap.entrySet()){
+    private boolean isSymmetric(Mat mat){
+        for(Map.Entry<Integer, Integer> entry: mat.matrixMap.entrySet()){
             Integer key = entry.getKey();
             Integer value = entry.getValue();
             int r = key/N;
             int c = key%N;
             int newKey = c*N+r;
-            if(this.matrixMap.containsKey(newKey)){
-                if(!Objects.equals(this.matrixMap.get(newKey), value)){
+            if(mat.matrixMap.containsKey(newKey)){
+                if(!Objects.equals(mat.matrixMap.get(newKey), value)){
                     return false;
                 }
             } else {
@@ -58,11 +53,6 @@ final class Mat{
         return true;
     }
 
-    /**
-     * @param mat1 First Matrix object
-     * @param mat2 Second Matrix object
-     * return mat Matrix which is addition of two matrices
-     */
     static public Mat addMatrix(Mat mat1, Mat mat2){
         if(mat1.row != mat2.row && mat1.col != mat2.col){
             throw new AssertionError("Dimension of the matrices are not same");
@@ -97,16 +87,11 @@ final class Mat{
         return new Mat(mat1.row,mat1.col,newInput);
     }
 
-    /**
-     * @param mat1 First Matrix object
-     * @param mat2 Second Matrix object
-     * @return  mat new matrix which is multiplication of two matrices
-     */
     static public Mat multiplyMatrix(Mat mat1, Mat mat2){
         if(mat1.col != mat2.row){
             throw new AssertionError("Multiplication not possible");
         }
-        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>(); 
+        HashMap<Integer,Integer> map = new HashMap(); 
         for(int i = 0; i < mat1.row; i++){
             for(int j = 0; j <= mat1.col; j++){
                 for(int k = 0; k < mat2.col; k++){
@@ -137,10 +122,6 @@ final class Mat{
         }
         return new Mat(mat1.row,mat2.col,newInput);
     }
-
-    /**
-     * Method to display a matrix
-     */
     public void display(){
         for(int i = 0; i < this.row; i++){
             for(int j = 0; j < this.col; j++){
