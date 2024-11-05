@@ -10,6 +10,10 @@ class Organization {
         this.departments = new ArrayList<>();
     }
 
+    public boolean addDepartment(Department department) {
+        return departments.add(department);
+    }
+
     public List<Employee> getAllEmployees() {
         List<Employee> allEmployees = new ArrayList<>();
         for (Department department : departments) {

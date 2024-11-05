@@ -15,24 +15,20 @@ class PayrollTest {
         Employee dev2 = new DeveloperEmployee("Amrit", 750000, 60000);
         Employee admin1 = new AdminEmployee("Aman", 60000, 60000);
         Employee admin2 = new AdminEmployee("Ankita", 550000, 60000);
-
-        devDept.join(dev1);
-        devDept.join(dev2);
-        adminDept.join(admin1);
-        adminDept.join(admin2);
-
         org.addDepartment(devDept);
         org.addDepartment(adminDept);
 
+        assertTrue(devDept.join(dev1));
+        assertTrue(devDept.join(dev2));
+        assertEquals(2,org.getAllEmployees().size());
+        assertFalse(devDept.join(dev2));
+        assertTrue(adminDept.join(admin1));
+        assertEquals(3,org.getAllEmployees().size());
+        assertTrue(devDept.relieve(dev2));
+        assertFalse(devDept.relieve(dev2));
+
         Payroll payroll = new Payroll();
-        for (Employee emp : org.getAllEmployees()) {
-            payroll.printSalarySlip(emp);
-        }
 
-        assertEquals(4, org.getAllEmployees().size());
-
-        adminDept.relieve(admin1);
-
-        assertEquals(3, org.getAllEmployees().size());
+        payroll.printSalarySlip(admin1);
     }
 }

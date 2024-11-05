@@ -34,15 +34,49 @@ class Payroll {
         Employee admin1 = new AdminEmployee("Aman", 60000, 60000);
         Employee admin2 = new AdminEmployee("Ankita", 550000, 60000);
 
-        devDept.join(dev1);
-        devDept.join(dev2);
-        adminDept.join(admin1);
-        adminDept.join(admin2);
+        if(devDept.join(dev1)){
+            System.out.println("Employee added successfully");
+        } else {
+            System.out.println("Employee not added");
+        }
+
+        if(devDept.join(dev2)){
+            System.out.println("Employee added successfully");
+        } else {
+            System.out.println("Employee not added");
+        }
+
+        if(adminDept.join(admin1)){
+            System.out.println("Employee added successfully");
+        } else {
+            System.out.println("Employee not added");
+        }
+
+        if(adminDept.join(admin1)){
+            System.out.println("Employee added successfully");
+        } else {
+            System.out.println("Employee not added");
+        } 
 
         org.addDepartment(devDept);
         org.addDepartment(adminDept);
 
+        if(devDept.relieve(dev2)){
+            System.out.println("Employee relieved successfully");
+        } else {
+            System.out.println("Employee does not exits");
+        }
+
+        if(adminDept.relieve(admin2)){
+            System.out.println("Employee relieved successfully");
+        } else {
+            System.out.println("Employee does not exists");
+        }
+
         Payroll payroll = new Payroll();
+
+        payroll.printSalarySlip(admin1);
+
         for (Employee emp : org.getAllEmployees()) {
             payroll.printSalarySlip(emp);
         }

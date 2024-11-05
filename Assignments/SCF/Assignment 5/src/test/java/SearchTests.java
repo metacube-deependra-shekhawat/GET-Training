@@ -9,7 +9,7 @@ public class SearchTests {
 
     private Search search = new Search();
 
-    @Test
+    @Tes
     public void linearSearchWhereTargetIsPresent() {
         int[] arr = {1, 2, 3, 4, 5};
         assertEquals(2, search.linearSearch(arr, 3));

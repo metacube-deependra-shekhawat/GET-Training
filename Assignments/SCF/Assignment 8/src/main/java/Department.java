@@ -12,11 +12,18 @@ class Department {
     }
 
     public boolean join(Employee employee) {
+        for(Employee emp: employees){
+            if(emp == employee) return false;
+        }
         return employees.add(employee);
     }
 
     public boolean relieve(Employee employee) {
-        return employees.remove(employee);
+        if(employees.contains(employee)){
+            return employees.remove(employee);
+        } else {
+            return false;
+        }
     }
 
     public List<Employee> getEmployees() {

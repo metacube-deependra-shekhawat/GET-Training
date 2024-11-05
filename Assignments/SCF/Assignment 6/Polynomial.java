@@ -10,11 +10,11 @@ final class Poly{
         this.deg = deg;
     }
 
-    public float evaluate(float var){
-        int n = deg.length;
-        float ans = 0;
+    public float evaluate(float var){ // 5
+        int n = deg.length; // 0 1 5 6
+        float ans = 0;      // 1 2 4 5     // 1 + 2*x + 4*x^5 + 5*x^6,   n = 4;
         for(int i = 0; i < n; i++){
-            ans += (coeff[i] * Math.pow(var,i));
+            ans += (coeff[i] * Math.pow(var,deg[i]));
         }
         return ans;
     }
@@ -31,9 +31,17 @@ final class Poly{
     public Poly addPoly(Poly p1, Poly p2){
         HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
         int n1 = p1.deg.length;
-        int n2 = p2.deg.length;
-        for(int i = 0; i < n1; i++){
-            map.put(p1.deg[i],p1.coeff[i]);
+        int n2 = p2.deg.length;                                  //0 1 5 6
+        for(int i = 0; i < n1; i++){                            //1 2 4 5     // 1 + 2*x + 4*x^5 + 5*x^6
+
+                                                                // 0 1 3
+                                                                // 5 6 7
+            map.put(p1.deg[i],p1.coeff[i]);                     
+                                                            // 0 -> 6
+                                                            // 1 -> 8
+                                                            // 5 -> 4
+                                                            // 6 -> 5
+                                                            // 3 -> 7
         }
         for(int j = 0; j < n2; j++){
             if(map.containsKey(p2.deg[j])){
@@ -98,6 +106,9 @@ public class Polynomial {
         Poly poly1 = new Poly(coeff1,deg1);
         Poly poly2 = new Poly(coeff2,deg2);
         Poly poly3 = poly1.addPoly(poly1,poly2);
+        Poly poly4 = poly1.mulPoly(poly1, poly2);
         poly3.display();
+        System.out.println();
+        poly4.display();
     }
 }

@@ -20,12 +20,11 @@ public class NQueens {
      */
     public boolean solveNQueens() {
         if (placeQueens(0)) {
-            printBoard();
-            return true;
         } else {
             System.out.println("Not Possible");
             return false;
         }
+        return true;
     }
 
     /**
@@ -33,10 +32,11 @@ public class NQueens {
      * @param row number of row in which the queen is to be placed
      * @return return a boolean if it is possible to place queen at a certain position
      */
-    private boolean placeQueens(int row) {  //  0 0 1
-                                            //  0 0 0
-                                            //  1 0 1
-        if (row == n) return true;
+    private boolean placeQueens(int row) {
+        if (row == n){
+            printBoard();
+            System.out.println();
+        }
         for (int col = 0; col < n; col++) {
             if (isSafe(row, col)) {
                 board[row][col] = 1;
@@ -79,7 +79,7 @@ public class NQueens {
     }
 
     public static void main(String[] args) {
-        NQueens nQueens = new NQueens(4);
+        NQueens nQueens = new NQueens(6);
         nQueens.solveNQueens();
     }
 }
