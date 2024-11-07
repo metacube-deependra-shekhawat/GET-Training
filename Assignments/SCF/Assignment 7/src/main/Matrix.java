@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 
 final class Mat{
-    final private HashMap<Integer, Integer> matrixMap;
+    final public HashMap<Integer, Integer> matrixMap;
     private final static int N = 999;
     private final int row,col;
     Mat(int row, int col, int[][] input){
@@ -20,7 +20,7 @@ final class Mat{
         // matrixMap = (HashMap<Integer, Integer>) Map.copyOf(map);
     }
 
-    private Mat getTranspose(Mat mat){
+    public Mat getTranspose(Mat mat){
         int[][] newInput = new int[mat.matrixMap.size()][3];
         int i = 0;
         for (Map.Entry<Integer, Integer> entry : mat.matrixMap.entrySet()) {
@@ -35,7 +35,7 @@ final class Mat{
         return new Mat(row,col,newInput);
     }
 
-    private boolean isSymmetric(Mat mat){
+    public boolean isSymmetric(Mat mat){
         for(Map.Entry<Integer, Integer> entry: mat.matrixMap.entrySet()){
             Integer key = entry.getKey();
             Integer value = entry.getValue();
@@ -122,6 +122,7 @@ final class Mat{
         }
         return new Mat(mat1.row,mat2.col,newInput);
     }
+
     public void display(){
         for(int i = 0; i < this.row; i++){
             for(int j = 0; j < this.col; j++){
@@ -141,11 +142,12 @@ public class Matrix {
     public static void main(String[] args) {
         int n1 = 3, m1 = 3;
         int n2 = 3, m2 = 3;
-        int[][] matInput1 = {{0,0,4},{0,2,7},{1,1,5},{1,2,3},{2,2,6}};
-        int[][] matInput2 = {{0,0,5},{0,1,3},{1,0,8},{1,2,5},{2,1,5}};
-        Mat mat1 = new Mat(3,3,matInput1);
-        Mat mat2 = new Mat(3,3,matInput2);
+        int[][] matInput1 = {{0,0,4},{0,2,7},{1,1,5},{1,2,3}};
+        int[][] matInput2 = {{0,0,5},{0,1,3},{1,0,8},{1,2,5}};
+        Mat mat1 = new Mat(2,3,matInput1);
+        Mat mat2 = new Mat(2,3,matInput2);
         Mat mat3 = Mat.addMatrix(mat1, mat2);
+        System.out.println("Addition");
         mat3.display();
         System.out.println();
         int[][] matInput11 = {{0,0,1},{0,1,1},{1,0,2},{1,1,2},{2,0,3},{2,1,3}};
@@ -153,6 +155,7 @@ public class Matrix {
         Mat mat11 = new Mat(3,2,matInput11);
         Mat mat12 = new Mat(2,3,matInput12);
         Mat mat13 = Mat.multiplyMatrix(mat11, mat12);
+        System.out.println("Multiplication");
         mat13.display();
     }
 }

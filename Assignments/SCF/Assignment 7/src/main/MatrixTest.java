@@ -11,7 +11,7 @@ public class MatrixTest {
         int[][] matInput2 = {{1,0,2},{0,0,1}};
         Mat inputMatrix = new Mat(2,2,matInput1);
         Mat expectedMatrix = new Mat(2,2,matInput2);
-        assertEquals(expectedMatrix.matrixMap,inputMatrix.getTranspose().matrixMap);
+        assertEquals(expectedMatrix.matrixMap,inputMatrix.getTranspose(inputMatrix).matrixMap);
     }
 
     // Test to check out if two matrices are not transpose
@@ -21,7 +21,7 @@ public class MatrixTest {
         int[][] matInput2 = {{1,1,2},{0,0,1}};
         Mat inputMatrix = new Mat(2,2,matInput1);
         Mat expectedMatrix = new Mat(2,2,matInput2);
-        assertNotEquals(expectedMatrix.matrixMap,inputMatrix.getTranspose().matrixMap);
+        assertNotEquals(expectedMatrix.matrixMap,inputMatrix.getTranspose(inputMatrix).matrixMap);
     }
 
     // Test case for checking if a matrix is symmetric
@@ -29,7 +29,7 @@ public class MatrixTest {
     public void checkSymmetricTrue(){
         int[][] matInput1 = {{0,0,2},{0,2,4},{2,0,4},{1,0,4},{0,1,4},{1,1,5},{1,2,7},{2,1,7}};
         Mat inputMatrix = new Mat(3,3,matInput1);
-        assertTrue(inputMatrix.isSymmetric());
+        assertTrue(inputMatrix.isSymmetric(inputMatrix));
     }
 
     // Test case for checking if a matrix is not symmetric
@@ -37,7 +37,7 @@ public class MatrixTest {
     public void checkSymmetricFalse(){
         int[][] matInput1 = {{0,0,2},{0,2,4},{1,0,4},{1,1,5},{2,1,7}};
         Mat inputMatrix = new Mat(3,3,matInput1);
-        assertFalse(inputMatrix.isSymmetric());
+        assertFalse(inputMatrix.isSymmetric(inputMatrix));
     }
 
     // Test case for multiplication of two matrices
