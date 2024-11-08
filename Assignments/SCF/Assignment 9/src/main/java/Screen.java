@@ -16,14 +16,28 @@ public class Screen {
         shapesOnScreen = new ArrayList<>();
     }
     
+    /**
+     * This method will add a shape on screen
+     * @param shape
+     * @return
+     */
     public boolean addShape(Shape shape){
         return shapesOnScreen.add(shape);
     }
 
+    /**
+     * This method will delete a shape from the screen
+     * @param shape
+     * @return
+     */
     public boolean deleteShape(Shape shape){
         return shapesOnScreen.remove(shape);
     }
 
+    /**
+     * This method will delete all the shape of specific type from the screen
+     * @param type
+     */
     public void deleteAllShapes(ShapeType type){
         for(Shape shape: shapesOnScreen){
             if(shape.getType() == type){
@@ -32,21 +46,37 @@ public class Screen {
         }
     }
 
+    /**
+     * This method will return the list of all shapes on screen sorted on basis of area
+     * @return the list of shape
+     */
     public List<Shape> getShapesSortedByArea() {
         shapesOnScreen.sort(Comparator.comparingDouble(Shape::getArea));
         return new ArrayList<>(shapesOnScreen);
     }
 
+    /**
+     * This method will return the list of all shapes on screen sorted on basis of perimeter
+     * @return the list of shape
+     */
     public List<Shape> getShapesSortedByPerimeter() {
         shapesOnScreen.sort(Comparator.comparingDouble(Shape::getPerimeter));
         return new ArrayList<>(shapesOnScreen);
     }
 
+    /**
+     * This method will return the list of all shapes on screen sorted on basis of timestamp
+     * @return the list of shape
+     */
     public List<Shape> getShapesSortedByTimestamp() {
         shapesOnScreen.sort(Comparator.comparingInt(Shape::getTimestamp));
         return new ArrayList<>(shapesOnScreen);
     }
 
+    /**
+     * This method will return the list of all shapes on screen sorted on basis of distance from origin
+     * @return the list of shape
+     */
     public List<Shape> getShapesSortedByOriginDistance() {
         shapesOnScreen.sort(Comparator.comparingDouble(shape -> shape.getOrigin().distanceFromOrigin()));
         return new ArrayList<>(shapesOnScreen);

@@ -12,10 +12,21 @@ public class Point {
         this.y = y;
     }
 
+    /**
+     * This method will return the distance between origin and shape's origin
+     * @return double the distance from origin to origin of shape
+     */
     public double distanceFromOrigin(){
         return Math.sqrt(x*x + y*y);
     }
 
+    /**
+     * This method will return all thed points of a polygon
+     * @param p the origin point
+     * @param numOfSides 
+     * @param length
+     * @return list of points
+     */
     static List<Point> calculatePoints(Point p, int numOfSides, int length){
         List<Point> points = new ArrayList<>();
         points.add(p);
@@ -31,6 +42,13 @@ public class Point {
         return points;
     }
     
+    /**
+     * This method will return the list of points of a rectangle
+     * @param p the origin point of rectangle
+     * @param length
+     * @param width
+     * @return
+     */
     static List<Point> calculateRectanglePoints(Point p, int length, int width){
         List<Point> points = new ArrayList<>();
         Point p1 = new Point(p.x+length,p.y);
@@ -43,6 +61,12 @@ public class Point {
         return points;
     }
 
+    /**
+     * This method will return a boolean checking if a point is enclosed by a shape of not
+     * @param points
+     * @param p
+     * @return
+     */
     static boolean isPointInside(List<Point> points, Point p) {
         int n = points.size();
         int count = 0;

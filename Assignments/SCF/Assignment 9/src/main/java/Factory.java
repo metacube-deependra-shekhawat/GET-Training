@@ -1,13 +1,17 @@
 package main.java;
 
-import java.util.List;
-import main.java.Shape.ShapeType;
-
 
 public class Factory {
 
     static int timestamp = 1;
 
+    /**
+     * This method will create a object of Shape type
+     * @param type shape which needs to be created
+     * @param origin 
+     * @param params
+     * @return shape object
+     */
     public Shape createShape(Shape.ShapeType type, Point origin, int[] params){
         Shape shape = null;
         if(null == type){
@@ -41,33 +45,5 @@ public class Factory {
             default -> System.out.println("Not a valid type");
         }
         return shape;
-    }
-
-    public static void main(String[] args) {
-        Factory factory = new Factory();
-        Screen screen = new Screen(1000,1000);
-
-        int[] params = {10, 50};
-        Point p = new Point(5,10);
-        Shape poly = factory.createShape(ShapeType.Polygon, p, params);
-        int[] params1 = {10, 25};
-        Point p4 = new Point(50,10);
-        Shape poly1 = factory.createShape(ShapeType.Polygon, p4, params1);
-        screen.addShape(poly);
-        screen.addShape(poly1);
-
-
-        Point p1 = new Point(5,15), p2 = new Point(30,30);
-
-        System.out.println(poly.getTimestamp());
-        System.out.println(poly1.getTimestamp());
-
-        if(poly.isEnclosed(p1)) System.out.println("Yes it is enclosed in the polygon");
-        if(!poly.isEnclosed(p2)) System.out.println("Not enclosed in polygon");
-        List<Shape> list1 = screen.getShapesSortedByArea();
-        for(Shape shape: list1){
-            System.out.println(shape.getArea());
-        }
-
     }
 }
