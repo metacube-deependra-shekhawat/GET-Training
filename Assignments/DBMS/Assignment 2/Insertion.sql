@@ -19,7 +19,6 @@ INSERT INTO storefront.images (productID, imageURL) VALUES (3, 'http://example.c
 INSERT INTO storefront.images (productID, imageURL) VALUES (4, 'http://example.com/image4.jpg');
 INSERT INTO storefront.images (productID, imageURL) VALUES (5, 'http://example.com/image5.jpg');
 
-
 -- Insert data into the category table
 INSERT INTO storefront.category (categoryName, parentCategoryID) VALUES ('Electronics', NULL);
 INSERT INTO storefront.category (categoryName, parentCategoryID) VALUES ('Laptops', 1);
@@ -33,7 +32,6 @@ INSERT INTO storefront.productCategory (productID, categoryID) VALUES (2, 3);
 INSERT INTO storefront.productCategory (productID, categoryID) VALUES (3, 4);
 INSERT INTO storefront.productCategory (productID, categoryID) VALUES (4, 5);
 INSERT INTO storefront.productCategory (productID, categoryID) VALUES (5, 2);
-
 
 -- Insert data into the user table
 INSERT INTO storefront.user (userName, userEmail, role) VALUES ('Alice', 'alice@example.com', 'Shopper');

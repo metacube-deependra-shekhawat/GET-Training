@@ -1,6 +1,9 @@
 -- #2.1
-SELECT p.productName FROM storefront.product p
-WHERE p.stock > 0;
+SELECT p.id, p.productName, p.cost, c.categoryName FROM storefront.product p
+LEFT JOIN storefront.productCategory pc on p.id = pc.productID
+JOIN storefront.category c on pc.categoryID = c.id
+WHERE p.stock > 0
+ORDER BY p.id DESC;
 
 -- #2.2
 SELECT p.id, p.productName, p.productDescription
@@ -9,7 +12,7 @@ LEFT JOIN storefront.images i ON p.id = i.productID
 WHERE i.productID IS NULL;
 
 -- #2.3
-SELECT cc.id, cc.categoryName, c.categoryName as ParentCategory
+SELECT cc.id, cc.categoryName, COALESCE(c.categoryName, 'Top Category') as ParentCategory
 FROM storefront.category c
 RIGHT JOIN storefront.category cc on c.id = cc.parentCategoryID
 ORDER BY c.categoryName ASC;
@@ -49,17 +52,18 @@ WHERE id NOT IN
 (SELECT userID FROM orders WHERE DATEDIFF(CURRENT_DATE(), date) < 31);
 
 -- #3.5
-SELECT u.id, u.userName, o.date FROM user u, orders o
-WHERE o.date IN
+SELECT u.id, u.userName, o.date FROM user u RIGHT JOIN orders o ON u.id = o.userID
+WHERE u.role = 'Shopper' AND o.date IN
 (SELECT date FROM orders WHERE DATEDIFF(CURRENT_DATE(), date) <= 15);
 
 -- #3.6
 SELECT p.productName, i.status FROM orders o 
 JOIN items i ON o.id = i.orderID AND i.status = 'Shipped'
 JOIN product p ON p.id = i.productID
+WHERE o.orderID = 1;
 
 -- #3.7
 SELECT o.id, o.date, p.productName, p.cost FROM orders o
 LEFT JOIN items i ON o.id = i.orderID
 RIGHT JOIN product p ON i.productID = p.id
-WHERE p.cost BETWEEN 20 AND 50;
+WHERE p.cost BETWEEN 20 AND 500;

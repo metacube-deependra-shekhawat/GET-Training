@@ -11,6 +11,18 @@ CREATE TABLE storefront.product (
     stock int NOT NULL DEFAULT 0
 );
 
+-- Dropping table Product
+DROP TABLE product;
+
+-- Recreation of Product table
+CREATE TABLE storefront.product (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    productName VARCHAR(50) NOT NULL,
+    productDescription VARCHAR(200),
+    cost int NOT NULL DEFAULT 0,
+    stock int NOT NULL DEFAULT 0
+);
+
 -- Creation of Images table
 CREATE TABLE storefront.images (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -27,7 +39,6 @@ CREATE TABLE storefront.user (
     role VARCHAR(15) NOT NULL,
     CHECK (role IN ('Shopper', 'Administrator'))
 );
-
 
 -- Creation of ShippingAddress table
 CREATE TABLE storefront.shippingAddress (
