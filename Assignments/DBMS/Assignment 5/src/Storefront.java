@@ -1,65 +1,41 @@
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-/**
- * class to connect and execute queries of the database
- */
 public class Storefront {
-	Connection con;
 
-	/**
-	 * Constructor to connect to JDBC
-	 */
+	public Connection con;
+
 	public Storefront() {
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/storefront", "root", "root");
+			String connectionURL = "jdbc:mysql://localhost:3306/storefront";
+			String userName = "root";
+			String password = "root";
+			con = DriverManager.getConnection(connectionURL, userName, password);
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		Runtime.getRuntime().addShutdownHook(new Thread() {
-			public void run() {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	static {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException cnfe) {
-			System.out.println("Error loading driver: " + cnfe);
+			System.out.println(e);
 		}
 	}
 
 	/**
-	 * Given the id of a user, fetch all orders (Id, Order Date, Order Total) of
-	 * that user which are in shipped state. Orders should be sorted by order date
-	 * column in chronological order.
-	 * 
-	 * @param userId user id for orders need to be fetched
-	 * @return list of orders
+	 * This method will fetch the list of orders place by a user with specific id
+	 * @param userId id of the shopper
+	 * @return list of orders placed by a shopper
 	 */
 	public List<Order> fetchAllOrders(int userId) {
 		List<Order> ordersList = new ArrayList<>();
 		PreparedStatement ps = null;
-		ResultSet rs = null;
+		ResultSet res = null;
 
 		try {
-			
-			String query = "SELECT o.id, o.date, o.amount FROM user_order o JOIN item i ON o.id = i.order_id WHERE o.user_id = ? AND i.status = 'Shipped' ORDER BY o.date";
+			String query = "SELECT o.id, o.date, o.amount FROM orders o JOIN items i ON o.id = i.orderID WHERE o.userID = ? AND i.status = 'Shipped' ORDER BY o.date";
 			ps = con.prepareStatement(query);
 			ps.setInt(1, userId);
-			rs = ps.executeQuery();
+			res = ps.executeQuery();
 
-			while (rs.next()) {
-				Order order = new Order(rs.getInt("id"), rs.getDate("date"), rs.getInt("amount"));
+			while (res.next()) {
+				Order order = new Order(res.getInt("id"), res.getDate("date"), res.getInt("amount"));
+				System.out.println(order);
 				ordersList.add(order);
 			}
 
@@ -67,24 +43,22 @@ public class Storefront {
 			System.out.println("Error: Unable to fetch the records.");
 		} finally {
 			try {
-				rs.close();
+				res.close();
 				ps.close();
 			} catch (SQLException e) {
 			}
 		}
-
 		return ordersList;
 	}
 
 	/**
-	 * Insert five or more images of a product using batch insert technique.
-	 * 
-	 * @param imageUrls list of URLs along with the image id
-	 * @return true if all the images are inserted
+	 * This method will insert multiple images for a specific product with using batch
+	 * @param imageUrls list of images urls
+	 * @return
 	 */
 	public boolean insertBatchImage(List<Image> imageUrls) {
 		boolean result = false;
-		String query = "INSERT INTO image VALUES(?,?)";
+		String query = "INSERT INTO images(productID, imageURL) VALUES(?,?)";
 		PreparedStatement ps = null;
 		try {
 			con.setAutoCommit(false);
@@ -106,109 +80,117 @@ public class Storefront {
 			try {
 				con.rollback();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				System.out.println(e1);
 			}
-			e.printStackTrace();
+			System.out.println(e);
 		} finally {
 			try {
 				ps.close();
 			} catch (SQLException e) {
-				/* ignore */}
+				System.out.println(e);
+			}
 		}
 
 		return result;
 	}
 
 	/**
-	 * Delete all those products which were not ordered by any Shopper in last 1
-	 * year.
-	 * 
-	 * @return the number of products deleted.
+	 * This method will delete those products from the product table which has not been purchased in last year
+	 * @return an integer representing the number of products deleted
 	 */
 	public int deleteProducts() {
-		String mainQuery = "(SELECT temp.pid FROM (SELECT DISTINCT i.product_id as pid FROM item i "
-				+ "JOIN product p ON i.product_id = p.id JOIN user_order o "
-				+ "ON o.id = i.order_id JOIN user u ON u.id = o.user_id "
-				+ "WHERE DATEDIFF(curDate(), o.date) < 365 AND u.role='Shopper') temp)";
-
-		
-		String query1 = "Delete FROM product_category WHERE product_id NOT IN " + mainQuery;
-		String query2 = "Delete FROM images WHERE product_id NOT IN " + mainQuery;
-		String query3 = "Delete FROM items WHERE product_id NOT IN " + mainQuery;
-		String query4 = "Delete FROM product WHERE id NOT IN " + mainQuery;
-		
-		Statement s = null;
-		int[] count = new int[4];
+		PreparedStatement ps = null;
+		int noOfDeletedProducts = 0;
 		
 		try {
-			con.setAutoCommit(false);
-			s = con.createStatement();
-			s.addBatch(query1);
-			s.addBatch(query2);
-			s.addBatch(query3);
-			s.addBatch(query4);
-			count = s.executeBatch();
-			con.commit();
+			String query = "DELETE FROM product p " + 
+							"WHERE id = (SELECT oi.productID FROM orders o " + 
+							"RIGHT JOIN items oi ON o.id = oi.productID " + 
+							"WHERE DATEDIFF(o.date, NOW()) > 365);";
+
+			ps = con.prepareStatement(query);
+			noOfDeletedProducts = ps.executeUpdate();
 		} catch (SQLException e) {
-			try {
-				con.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			e.printStackTrace();
+				System.out.println(e);
 		} finally {
 			try {
-				s.close();
+				ps.close();
 			} catch (SQLException e) {
-				/* ignore */}
+				System.out.println(e);
+			}
 		}
-
-		return count[count.length-1];
+		return noOfDeletedProducts;
 	}
 
 	/**
-	 * Select and display the category title of all top parent categories sorted
-	 * alphabetically and the count of their child categories.
-	 * 
-	 * @return categoryList list of type category
+	 * Thise method will return the list Top categories which do not have any parent category along with count of subcategories of each category
+	 * @return list of Categories
 	 */
 	public List<Category> categoryList() {
-		String query = "SELECT  c.name as Title, count(c.id) as count FROM category c "
-				+ "JOIN category p ON c.id = p.parent_id " + "WHERE c.parent_id is NULL "
-				+ "GROUP BY c.name " + "ORDER BY Title";
-
-		Statement s = null;
-		ResultSet rs = null;
-
-		List<Category> list = new LinkedList<>();
+		List<Category> categoryList = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet res = null;
 
 		try {
-			con.setAutoCommit(false);
-			s = con.createStatement();
-			rs = s.executeQuery(query);
+			String query = "SELECT c1.categoryName, COUNT(c2.id) AS ChildCount FROM category c1 " + 
+							"JOIN category c2 ON c1.id = c2.parentCategoryID " + 
+							"WHERE c1.parentCategoryID IS NULL " +
+							"GROUP BY c1.categoryName " + 
+							"ORDER BY categoryName;";
+			ps = con.prepareStatement(query);
+			res = ps.executeQuery();
 
-			while (rs.next()) {
-				list.add(new Category(rs.getString(1), rs.getInt(2)));
+			while (res.next()) {
+				Category category = new Category(res.getString("categoryName"), res.getInt("ChildCount"));
+				System.out.println(category);
+				categoryList.add(category);
 			}
 
-			con.commit();
 		} catch (SQLException e) {
-			try {
-				con.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			e.printStackTrace();
+			System.out.println(e);
 		} finally {
 			try {
-				s.close();
-				rs.close();
+				res.close();
+				ps.close();
 			} catch (SQLException e) {
-				/* ignore */}
+			}
 		}
-
-		return list;
-
+		return categoryList;
 	}
 
+	public static void main(String[] args) {
+		Storefront sf = new Storefront();
+
+		System.out.println("Orders placed by Shopper with ID 1");
+		sf.fetchAllOrders(1);
+		System.out.println();
+
+		System.out.println("Inserting images for product with first id");
+		Image img1 = new Image(1, "http://example.com/image6.jpg");
+		Image img2 = new Image(1, "http://example.com/image7.jpg");
+		Image img3 = new Image(1, "http://example.com/image8.jpg");
+		Image img4 = new Image(1, "http://example.com/image9.jpg");
+		Image img5 = new Image(1, "http://example.com/image10.jpg");
+		ArrayList<Image> imageList = new ArrayList<>();
+        imageList.add(img1);
+        imageList.add(img2);
+        imageList.add(img3);
+        imageList.add(img4);
+        imageList.add(img5);
+		System.out.println(sf.insertBatchImage(imageList));
+		System.out.println();
+
+		System.out.println("List of top categories with count of subcategories");
+		sf.categoryList();
+		System.out.println();
+
+		System.out.println("Number of products not purchased in last year and deleting them");
+		System.out.println(sf.deleteProducts());
+
+		try {
+			sf.con.close();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
 }

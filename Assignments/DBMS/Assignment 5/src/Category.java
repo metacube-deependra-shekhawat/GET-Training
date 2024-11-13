@@ -1,4 +1,6 @@
-/** POJO Class of the Category */
+/**
+ * Category table POJO Class
+*/
 public class Category {
 	private String parentCategory;
 	private int noOfChildren;
@@ -24,7 +26,7 @@ public class Category {
 	/**
 	 * @param parentCategory the parentCategory to set
 	 */
-	void setParentCategory(String parentCategory) {
+	void setParentCategory(int parentCategoryID) {
 		this.parentCategory = parentCategory;
 	}
 
@@ -44,7 +46,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "parentCategory=" + parentCategory + ", noOfChildren=" + noOfChildren;
+		return "Parent Category = " + parentCategory + ", No of Children = " + noOfChildren;
 	}
 
 }

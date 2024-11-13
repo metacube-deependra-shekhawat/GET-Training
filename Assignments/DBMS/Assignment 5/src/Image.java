@@ -1,4 +1,4 @@
-/** POJO Class of the Image */
+/**Image table POJO Class */
 public class Image {
 	private int productId;
 	private String url;

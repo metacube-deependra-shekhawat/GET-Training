@@ -61,6 +61,6 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", orderDate=" + orderDate + ", amount=" + amount + "]";
+		return "Order Id = " + id + ", Order Date = " + orderDate + ", Amount = " + amount;
 	}
 }
