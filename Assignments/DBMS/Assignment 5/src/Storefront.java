@@ -5,6 +5,22 @@ import java.util.List;
 public class Storefront {
 
 	public Connection con;
+	String queryToFetchListOfCategories = "SELECT c1.categoryName, COUNT(c2.id) AS ChildCount FROM category c1 " + 
+							"JOIN category c2 ON c1.id = c2.parentCategoryID " + 
+							"WHERE c1.parentCategoryID IS NULL " +
+							"GROUP BY c1.categoryName " + 
+							"ORDER BY categoryName;";
+
+	String queryToDeleteUnpurchasedProducts = "DELETE FROM product p " + 
+							"WHERE id in (SELECT oi.productID FROM orders o " + 
+							"RIGHT JOIN items oi ON o.id = oi.productID " + 
+							"WHERE DATEDIFF(NOW(), o.date) > 365);";
+
+	String queryToInsertImagesInBatch = "INSERT INTO images(productID, imageURL) VALUES(?,?)";
+
+	String queryToFetchOrdersOfAShopper = "SELECT o.id, o.date, o.amount FROM orders o " + 
+							"JOIN items i ON o.id = i.orderID " + 
+							"WHERE o.userID = ? AND i.status = 'Shipped' ORDER BY o.date";
 
 	public Storefront() {
 		try {
@@ -28,8 +44,7 @@ public class Storefront {
 		ResultSet res = null;
 
 		try {
-			String query = "SELECT o.id, o.date, o.amount FROM orders o JOIN items i ON o.id = i.orderID WHERE o.userID = ? AND i.status = 'Shipped' ORDER BY o.date";
-			ps = con.prepareStatement(query);
+			ps = con.prepareStatement(queryToFetchOrdersOfAShopper);
 			ps.setInt(1, userId);
 			res = ps.executeQuery();
 
@@ -39,8 +54,8 @@ public class Storefront {
 				ordersList.add(order);
 			}
 
-		} catch (SQLException sqle) {
-			System.out.println("Error: Unable to fetch the records.");
+		} catch (SQLException e) {
+			System.out.println(e);
 		} finally {
 			try {
 				res.close();
@@ -58,11 +73,9 @@ public class Storefront {
 	 */
 	public boolean insertBatchImage(List<Image> imageUrls) {
 		boolean result = false;
-		String query = "INSERT INTO images(productID, imageURL) VALUES(?,?)";
 		PreparedStatement ps = null;
 		try {
-			con.setAutoCommit(false);
-			ps = con.prepareStatement(query);
+			ps = con.prepareStatement(queryToInsertImagesInBatch);
 
 			for (Image image : imageUrls) {
 				ps.setInt(1, image.getProductId());
@@ -72,16 +85,13 @@ public class Storefront {
 
 			int[] inserts = ps.executeBatch();
 
-			if (inserts.length > 0)
+			if (inserts.length > 0){
+				System.out.println(inserts[0]);
+				System.out.println(inserts[3]);
 				result = true;
-
-			con.commit();
-		} catch (SQLException e) {
-			try {
-				con.rollback();
-			} catch (SQLException e1) {
-				System.out.println(e1);
 			}
+
+		} catch (SQLException e) {
 			System.out.println(e);
 		} finally {
 			try {
@@ -90,7 +100,6 @@ public class Storefront {
 				System.out.println(e);
 			}
 		}
-
 		return result;
 	}
 
@@ -101,14 +110,8 @@ public class Storefront {
 	public int deleteProducts() {
 		PreparedStatement ps = null;
 		int noOfDeletedProducts = 0;
-		
 		try {
-			String query = "DELETE FROM product p " + 
-							"WHERE id = (SELECT oi.productID FROM orders o " + 
-							"RIGHT JOIN items oi ON o.id = oi.productID " + 
-							"WHERE DATEDIFF(o.date, NOW()) > 365);";
-
-			ps = con.prepareStatement(query);
+			ps = con.prepareStatement(queryToDeleteUnpurchasedProducts);
 			noOfDeletedProducts = ps.executeUpdate();
 		} catch (SQLException e) {
 				System.out.println(e);
@@ -132,20 +135,13 @@ public class Storefront {
 		ResultSet res = null;
 
 		try {
-			String query = "SELECT c1.categoryName, COUNT(c2.id) AS ChildCount FROM category c1 " + 
-							"JOIN category c2 ON c1.id = c2.parentCategoryID " + 
-							"WHERE c1.parentCategoryID IS NULL " +
-							"GROUP BY c1.categoryName " + 
-							"ORDER BY categoryName;";
-			ps = con.prepareStatement(query);
+			ps = con.prepareStatement(queryToFetchListOfCategories);
 			res = ps.executeQuery();
-
 			while (res.next()) {
 				Category category = new Category(res.getString("categoryName"), res.getInt("ChildCount"));
 				System.out.println(category);
 				categoryList.add(category);
 			}
-
 		} catch (SQLException e) {
 			System.out.println(e);
 		} finally {
@@ -153,6 +149,7 @@ public class Storefront {
 				res.close();
 				ps.close();
 			} catch (SQLException e) {
+				System.out.println(e);
 			}
 		}
 		return categoryList;
@@ -172,11 +169,11 @@ public class Storefront {
 		Image img4 = new Image(1, "http://example.com/image9.jpg");
 		Image img5 = new Image(1, "http://example.com/image10.jpg");
 		ArrayList<Image> imageList = new ArrayList<>();
-        imageList.add(img1);
-        imageList.add(img2);
-        imageList.add(img3);
-        imageList.add(img4);
-        imageList.add(img5);
+		imageList.add(img1);
+		imageList.add(img2);
+		imageList.add(img3);
+		imageList.add(img4);
+		imageList.add(img5);
 		System.out.println(sf.insertBatchImage(imageList));
 		System.out.println();
 

@@ -26,7 +26,7 @@ public class Category {
 	/**
 	 * @param parentCategory the parentCategory to set
 	 */
-	void setParentCategory(int parentCategoryID) {
+	void setParentCategory(String parentCategory) {
 		this.parentCategory = parentCategory;
 	}
 
