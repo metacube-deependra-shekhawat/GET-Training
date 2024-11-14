@@ -27,6 +27,9 @@ INSERT INTO storefront.category (categoryName, parentCategoryID) VALUES ('Access
 INSERT INTO storefront.category (categoryName, parentCategoryID) VALUES ('Gaming', 1);
 
 -- Insert data into the productCategory table
+INSERT INTO storefront.productCategory (productID, categoryID) VALUES (1, 1);
+INSERT INTO storefront.productCategory (productID, categoryID) VALUES (2, 1);
+INSERT INTO storefront.productCategory (productID, categoryID) VALUES (5, 1);
 INSERT INTO storefront.productCategory (productID, categoryID) VALUES (1, 2);
 INSERT INTO storefront.productCategory (productID, categoryID) VALUES (2, 3);
 INSERT INTO storefront.productCategory (productID, categoryID) VALUES (3, 4);
@@ -50,10 +53,10 @@ INSERT INTO storefront.shippingAddress (userID, zipCode, city, state, country) V
 INSERT INTO storefront.shippingAddress (userID, zipCode, city, state, country) VALUES (5, '56789', 'CityE', 'StateE', 'CountryE');
 
 -- Insert data into the order table
-INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (1, '2024-11-01', 150.00, 1);
-INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (2, '2024-11-02', 200.00, 2);
-INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (3, '2024-11-03', 250.00, 3);
-INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (4, '2024-11-04', 300.00, 4);
+INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (1, '2022-11-01', 150.00, 1);
+INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (2, '2022-11-02', 200.00, 2);
+INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (3, '2022-11-03', 250.00, 3);
+INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (5, '2024-11-05', 350.00, 5);
 INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (5, '2024-11-05', 350.00, 5);
 INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (6, '2024-10-05', 350.00, 5);
 INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (7, '2024-10-01', 350.00, 5);
@@ -62,5 +65,5 @@ INSERT INTO storefront.orders (userID, date, amount, addressID) VALUES (7, '2024
 INSERT INTO storefront.items (orderID, productID, status, quantity) VALUES (1, 1, 'Shipped', 2);
 INSERT INTO storefront.items (orderID, productID, status, quantity) VALUES (2, 2, 'Cancelled', 1);
 INSERT INTO storefront.items (orderID, productID, status, quantity) VALUES (3, 3, 'Returned', 3);
-INSERT INTO storefront.items (orderID, productID, status, quantity) VALUES (4, 4, 'Not Shipped', 4);
 INSERT INTO storefront.items (orderID, productID, status, quantity) VALUES (5, 5, 'Shipped', 5);
+INSERT INTO storefront.items (orderID, productID, status, quantity) VALUES (6, 4, 'Shipped', 5);

@@ -28,7 +28,7 @@ CREATE TABLE storefront.images (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     productID int NOT NULL,
     imageURL VARCHAR(200),
-    FOREIGN KEY (productID) REFERENCES storefront.product(id)
+    FOREIGN KEY (productID) REFERENCES storefront.product(id) ON DELETE CASCADE
 );
 
 -- Creation of User table
@@ -48,7 +48,7 @@ CREATE TABLE storefront.shippingAddress (
     city VARCHAR(50),
     state VARCHAR(50),
     country VARCHAR(50),
-    FOREIGN KEY (userID) REFERENCES storefront.user(id)
+    FOREIGN KEY (userID) REFERENCES storefront.user(id) ON DELETE CASCADE
 );
 
 -- Creation of Category table
@@ -56,7 +56,7 @@ CREATE TABLE storefront.category (
     id INT PRIMARY KEY AUTO_INCREMENT,
     categoryName VARCHAR(100),
     parentCategoryID INT,
-    FOREIGN KEY (parentCategoryID) REFERENCES storefront.category(id)
+    FOREIGN KEY (parentCategoryID) REFERENCES storefront.category(id) ON DELETE CASCADE
 );
 
 -- Creation of ProductCategory table
@@ -64,8 +64,8 @@ CREATE TABLE storefront.productCategory (
     productID INT,
     categoryID INT,
     PRIMARY KEY (productID, categoryID),
-    FOREIGN KEY (productID) REFERENCES storefront.product(id),
-    FOREIGN KEY (categoryID) REFERENCES storefront.category(id)
+    FOREIGN KEY (productID) REFERENCES storefront.product(id) ON DELETE CASCADE,
+    FOREIGN KEY (categoryID) REFERENCES storefront.category(id) ON DELETE CASCADE
 );
 
 -- Creation of Orders table
@@ -75,8 +75,8 @@ CREATE TABLE storefront.orders (
     addressID INT NOT NULL,
     date DATE NOT NULL,
     amount DOUBLE NOT NULL,
-    FOREIGN KEY(userID) REFERENCES storefront.user(id),
-    FOREIGN KEY(addressID) REFERENCES storefront.shippingAddress(id)
+    FOREIGN KEY(userID) REFERENCES storefront.user(id) ON DELETE CASCADE,
+    FOREIGN KEY(addressID) REFERENCES storefront.shippingAddress(id) ON DELETE CASCADE
 );
 
 -- Creation of Items table
@@ -87,6 +87,6 @@ CREATE TABLE storefront.items (
     status VARCHAR(15) NOT NULL,
     CHECK (status IN ('Shipped', 'Cancelled', 'Returned', 'Not Shipped')),
     quantity INT NOT NULL,
-    FOREIGN KEY(orderID) REFERENCES storefront.orders(id),
-    FOREIGN KEY(productID) REFERENCES storefront.product(id)
+    FOREIGN KEY(orderID) REFERENCES storefront.orders(id) ON DELETE CASCADE,
+    FOREIGN KEY(productID) REFERENCES storefront.product(id) ON DELETE CASCADE
 );
