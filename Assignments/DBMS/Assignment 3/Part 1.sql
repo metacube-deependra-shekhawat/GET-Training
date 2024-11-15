@@ -6,12 +6,12 @@ GROUP BY p.id
 HAVING COUNT(c.categoryID) > 1;
 
 -- #2.2
-SELECT COUNT(id),
+SELECT
 CASE
     WHEN cost BETWEEN 0 and 100 THEN "0-100"
     WHEN cost BETWEEN 101 and 500 THEN "101-500"
     WHEN cost > 500 THEN ">500"
-END AS priceRange
+END AS priceRange, COUNT(id)
 FROM product
 GROUP BY priceRange;
 

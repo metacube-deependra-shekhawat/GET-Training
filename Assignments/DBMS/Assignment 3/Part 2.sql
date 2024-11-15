@@ -53,4 +53,4 @@ JOIN items i ON i.productID = p.id
 WHERE i.status = 'Cancelled'
 GROUP BY i.productID
 ORDER BY count(p.id) DESC
-LIMIT 2;
+LIMIT 10;
