@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MetaParking</title>
+</head>
+<body background="Images/Parking.jpg">
+    <header>
+        <nav>
+            <a href="#addemployee">Add Employee</a> |
+            <a href="#addvehicle">Add Vehicle</a> |
+            <a href="#feedback">Give Feedback</a> |
+            <a href="#pricing">Pricing</a>
+        </nav>
+    </header>
+    <main>
+        <!-- Section for adding a new Employee -->
+        <section id="addemployee">
+            <h1>Form to Add an Employee</h1>
+            <form>
+                <!-- Input name -->
+                <label for="name">Full name:</label>
+                <input type="text" id="fname" name="fname"><br><br>
+                <!-- Input gender -->
+                <label for="gender">Gender:</label>
+                <input type="radio" id="male" name="gender" value="Male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label><br><br>
+                <!-- Input email -->
+                <label for="email">Email: </label>
+                <input type="email" id="email" name="email"><br><br>
+                <!-- Input password & confirmation -->
+                <label for="password">Password: </label>
+                <input type="password" id="password" name="password"><br><br>
+                <label for="confPassword">Confirm Password: </label>
+                <input type="password" id="confPassword" name="confPassword"><br><br>
+                <!-- Input contact number -->
+                <label for="contact">Contact Number: </label>
+                <input type="tel" id="contact" name="contact"><br><br>
+                <!-- Button to submit -->
+                <button type="submit">Submit</button>
+            </form><br><br>
+        </section>
+        <!-- Section to add a new vehicle -->
+        <section id="addvehicle">
+            <h1>Form to add Vehicle</h1>
+            <form>
+                <!-- Input for vehicle make -->
+                <label for="vehicleMake">Brand: </label>
+                <input type="text" id="vehicleMake" name="vehicleMake"><br><br>
+                <!-- Input for vehicle model -->
+                <label for="vehicleModel">Model: </label>
+                <input type="text" id="vehicleModel" name="vehicleModel"><br><br>
+                <!-- Input for vehicle type -->
+                <label for="vehicleType">Type: </label>
+                <input type="radio" id="cycle" name="vehicleType" value="Cycle">
+                <label for="cycle">Cycle</label>
+                <input type="radio" id="motorbike" name="vehicleType" value="MotoBike">
+                <label for="motorbike">MotorBike</label>
+                <input type="radio" id="car" name="vehicleType" value="CAR">
+                <label for="car">Car</label><br><br>
+                <!-- Input for vehicle number -->
+                <label for="vehicleNumber">Vehicle Number</label>
+                <input type="text" id="vehicleNumber" name="vehicleNumber"><br><br>
+                <!-- Input for employee id -->
+                <label for="empID">Employee ID</label>
+                <input type="text" id="empID" name="empID"><br><br>
+                <!-- Input for vehicle identification -->
+                <label for="identification">Identification</label>
+                <textarea id="identification" name="identification"></textarea><br><br>
+                <!-- Button to submit -->
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+        <section id="feedback">
+            <!-- Section for filling feedback -->
+            <h1>Get in touch</h1>
+            <form>
+                <!-- Input name -->
+                <label for="name">Full name:</label>
+                <input type="text" id="fname" name="fname"><br><br>
+                <!-- Input email -->
+                <label for="email">Email: </label>
+                <input type="email" id="email" name="email"><br><br>
+                <!-- Input subject -->
+                <label for="subject">Subject: </label>
+                <input type="text" id="subject" name="subject"><br><br>
+                <!-- Input for message-->
+                <label for="message">Message</label>
+                <textarea id="message" name="message"></textarea><br><br>
+                <!-- Button to submit -->
+                <button type="submit">Send Email</button>
+            </form>
+        </section>
+        <section id="pricing">
+            <!-- Section for displaying Pricing -->
+            <div>
+               <h2>Cycle</h2>
+               <h2>$100</h2><h4>/month</h4>
+               <p>$5 Daily</p>
+               <p>$100 Monthly</p>
+               <p>$500 Yearly</p>
+               <button>Purchase Now</button>
+            </div>
+            <div>
+               <h2>MotorBike</h2>
+               <h2>$200</h2><h4>/month</h4>
+               <p>$10 Daily</p>
+               <p>$200 Monthly</p>
+               <p>$1000 Yearly</p>
+               <button>Purchase Now</button>
+            </div>
+            <div>
+               <h2>Car</h2>
+               <h2>$500</h2><h4>/month</h4>
+               <p>$20 Daily</p>
+               <p>$500 Monthly</p>
+               <p>$3500 Yearly</p>
+               <button>Purchase Now</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
