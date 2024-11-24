@@ -265,6 +265,39 @@ nav {
     left: 30px;
 }
 
+.circularSpan1 {
+    z-index: 200;
+    border: #333655;
+    // background-color: #e8e880;
+    padding: 50px 30px;
+    border-radius: 100%;
+    color: white;
+    font-weight: 600;
+    font-size: x-large;
+    position: absolute;
+    top: 150px;
+    left: 250px;
+}
+
+.circularSpan2 {
+    z-index: 200;
+    border: #333655;
+    // background-color: #e8e880;
+    padding: 50px 50px;
+    border-radius: 100%;
+    color: white;
+    font-weight: 600;
+    font-size: x-large;
+    position: absolute;
+    top: 350px;
+    left: -80px;
+}
+
+.widgetImg {
+    height: 50px;
+    width: 130px;
+}
+
 .middle3Screenshot {
     position: relative;
 }

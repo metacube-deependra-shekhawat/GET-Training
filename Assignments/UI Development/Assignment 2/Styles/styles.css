@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #f6f6efc0;
 }
 
 #mainImage {
@@ -44,10 +45,11 @@ nav {
 }
 
 .headingDiv {
+    text-align: center;
     background-color: #00b9f2;
     border-radius: 10px;
     display: block;
-    font-size:xx-large;
+    font-size:50px;
     padding: 1px 9px 1px 20px;
     margin: 5px 10px 5px 10px;
 }
@@ -119,11 +121,11 @@ form {
     flex-direction: column;
     width: 550px;
     margin: 0;
-    padding: 30px;
+    padding: 40px 70px 40px 40px;
     border-radius: 15px;
     background: linear-gradient(135deg, #91ece72d 0%, #89d6f518 100%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    /* font-family: 'Comic Sans MS', cursive, sans-serif; */
 }
 
 .radioDiv {
@@ -178,4 +180,12 @@ textarea {
 input[type="radio"] + label {
     margin-right: 15px;
     color: #555;
+}
+
+#footer {
+    background-color: #3fbaeb;
+    display: flex;
+    justify-content: center;
+    color: white;
+    width: 100%;
 }
