@@ -1,6 +1,8 @@
 package main.java;
 
 class Payroll {
+    // This method will print the salary slip of an employee
+    final double taxPercent = 0.3;
     public void printSalarySlip(Employee employee) {
         double basicSalary = employee.getBasicSalary();
         double bonus = employee.getBonus();
@@ -21,7 +23,7 @@ class Payroll {
      * @return tax to be subtracted  from the compensation
      */
     private double calculateTax(double compensation) {
-        return compensation * 0.3;
+        return compensation * taxPercent;
     }
 
     public static void main(String[] args){
@@ -55,7 +57,7 @@ class Payroll {
         if(adminDept.join(admin1)){
             System.out.println("Employee added successfully");
         } else {
-            System.out.println("Employee not added");
+            System.out.println("Employee already exists");
         } 
 
         org.addDepartment(devDept);

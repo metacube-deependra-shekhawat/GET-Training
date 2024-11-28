@@ -15,7 +15,7 @@ class Item {
 }
 
 public class ShoppingCart{
-    private static Map<String, Integer> cart = new HashMap<>();
+    private static final Map<String, Integer> cart = new HashMap<>();
     private static int total = 0;
 
     /**
@@ -93,7 +93,7 @@ public class ShoppingCart{
             int quantity;
             String name;
             switch (choice) {
-                case 1:
+                case 1 -> {
                     System.out.println("The items available to buy are:-");
                     for (Map.Entry<String,Item> entry : items.entrySet()) {
                         System.out.println(entry.getKey() +": " + entry.getValue().price + "Rs");
@@ -111,9 +111,9 @@ public class ShoppingCart{
                     System.out.println();
                     addItemToCart(items.get(name), quantity);
                     System.out.println();
-                    break;
+                }
 
-                case 2:
+                case 2 -> {
                     if(cart.isEmpty()){
                         System.out.println("No items in your cart, consider adding items to you cart");
                         break;
@@ -131,9 +131,9 @@ public class ShoppingCart{
                     }
                     showQuantity(items.get(name));
                     System.out.println();
-                    break;
+                }
 
-                case 3:
+                case 3 -> {
                     System.out.print("Please enter the name of the item: ");
                     scanner.nextLine();
                     name = scanner.nextLine();
@@ -146,9 +146,9 @@ public class ShoppingCart{
                     System.out.println();
                     updateQuantity(items.get(name), quantity);
                     System.out.println();
-                    break;
+                }
 
-                case 4:
+                case 4 -> {
                     if(cart.isEmpty()){
                         System.out.println("No items present in the cart");
                         break;
@@ -166,21 +166,22 @@ public class ShoppingCart{
                     }
                     deleteItem(items.get(name));
                     System.out.println();
-                    break;
+                }
 
-                case 5:
+                case 5 -> {
                     displayTotal();
                     System.out.println();
-                    break;
+                }
 
-                case 6:
+                case 6 -> {
                     scanner.close();
                     return;
+                }
 
-                default:
+                default -> {
                     System.out.println("Please enter a valid number.");
                     System.out.println();
-                    break;
+                }
             }
         }
     }

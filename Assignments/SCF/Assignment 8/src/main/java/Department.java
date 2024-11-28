@@ -11,6 +11,7 @@ class Department {
         this.employees = new ArrayList<>();
     }
 
+    // This method will add an employee to the department
     public boolean join(Employee employee) {
         for(Employee emp: employees){
             if(emp == employee) return false;
@@ -18,6 +19,7 @@ class Department {
         return employees.add(employee);
     }
 
+    // This method will remove an employee from the department
     public boolean relieve(Employee employee) {
         if(employees.contains(employee)){
             return employees.remove(employee);
@@ -26,6 +28,7 @@ class Department {
         }
     }
 
+    // This method will return the list of employees of the department
     public List<Employee> getEmployees() {
         return employees;
     }

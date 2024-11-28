@@ -41,17 +41,17 @@ SELECT id, amount FROM orders
 ORDER BY amount DESC;
 
 -- #3.3
-SELECT o.id, o.date, i.status FROM orders o LEFT JOIN items i
-ON o.id = i.orderID
-WHERE DATEDIFF(CURRENT_DATE(), date) > 10
-OR i.status IN ('Not Shipped');
+select o.id, o.date, i.status from orders o left join items i
+on o.id = i.orderid
+where datediff(current_date(), date) > 10
+or i.status in ('not shipped');
 
 -- #3.4
 SELECT id, userName FROM user
 WHERE id NOT IN
 (SELECT userID FROM orders WHERE DATEDIFF(CURRENT_DATE(), date) < 31);
 
--- #3.5
+-- #3.v5
 SELECT u.id, u.userName, o.date FROM user u RIGHT JOIN orders o ON u.id = o.userID
 WHERE u.role = 'Shopper' AND o.date IN
 (SELECT date FROM orders WHERE DATEDIFF(CURRENT_DATE(), date) <= 15);

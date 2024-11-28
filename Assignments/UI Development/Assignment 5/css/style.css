@@ -2,7 +2,6 @@ html,
 body {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
 	height: 100%;
 }
 
@@ -38,9 +37,10 @@ body {
 }
 
 /* Side Nav */
-#side_nav {
+#sideBar {
 	background-color: var(--website-nav-dark);
-	min-width: 17rem;
+	max-height: 100vh;
+	overflow-y: auto;
 }
 
 .accordion-button:not(.collapsed) {
@@ -94,41 +94,17 @@ header{
 	border-bottom-left-radius: 0;
 }
 
-.btn:focus {
-	border: 0;
-}
 
 .flag_images {
-	width: 1rem;
+	width: 2rem;
 }
 
-#profile_wrapper {
-	display: grid;
-	align-content: center;
-	grid-template-columns: 1fr 4fr;
-	border-left: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-#profile_image {
-	display: grid;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	border-radius: 50%;
-	height: 2.1rem;
-	width: 2.1rem;
-}
 
 /* Content > Main */
 main {
 	background-color: var(--website-background-light);
 }
 
-#projects_heading {
-	display: flex;
-	justify-content: space-between;
-	margin-right: 1rem;
-}
 
 #projects_content {
 	display: grid;

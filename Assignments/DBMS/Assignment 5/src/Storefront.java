@@ -87,7 +87,6 @@ public class Storefront {
 
 			if (inserts.length > 0){
 				System.out.println(inserts[0]);
-				System.out.println(inserts[3]);
 				result = true;
 			}
 

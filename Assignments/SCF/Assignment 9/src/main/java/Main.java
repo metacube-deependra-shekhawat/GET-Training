@@ -8,7 +8,7 @@ public class Main {
         Factory factory = new Factory();
         Screen screen = new Screen(1000,1000);
 
-        int[] poly1Param = {10, 50};
+        int[] poly1Param = {10, 10};
         int[] poly2Param = {10, 25};
         int[] triangleParam = {5};
         int[] circleParam = {7};
@@ -31,8 +31,7 @@ public class Main {
         screen.addShape(circle);
         screen.addShape(rectangle);
 
-
-
+        System.out.println("Timestamp of poly1");
         System.out.println(poly1.getTimestamp());
 
         if(poly1.isEnclosed(p1)) System.out.println("Yes it is enclosed in the polygon");
@@ -41,6 +40,5 @@ public class Main {
         for(Shape shape: list1){
             System.out.println(shape.getArea());
         }
-
     }
 }

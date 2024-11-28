@@ -1,8 +1,8 @@
 -- #3.1
-ALTER TABLE orders o ADD INDEX (o.date);
+ALTER TABLE orders ADD INDEX (date);
 
 -- #3.2
-ALTER TABLE product p ADD INDEX (p.productName);
+ALTER TABLE product ADD INDEX (productName);
 
 -- #3.3
-ALTER TABLE category c ADD INDEX (c.categoryName);
+ALTER TABLE category ADD INDEX (categoryName);

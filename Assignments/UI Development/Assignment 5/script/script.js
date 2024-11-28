@@ -1,4 +1,4 @@
-let navBar = document.getElementById("side_nav");
+let navBar = document.getElementById("sideBar");
 let navBarButton = document.getElementById("nav_hamburger");
 let isExpanded = true;
 navBarButton.addEventListener("click", ()=>{
@@ -17,8 +17,8 @@ let myChart = new Chart(ctx, {
     data: { 
         labels: [
             'Completed',
-            'Pending',
-            'Failed'
+            'In-progress',
+            'Behind'
         ],
         datasets: [{ 
             data: [64, 26, 10], 

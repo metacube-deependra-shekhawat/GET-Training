@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PayrollTest {
 
     @Test
-    void testPayroll() {
+    void completePayrollTest() {
         Organization org = new Organization();
         Department devDept = new Department("Development");
         Department adminDept = new Department("Admin");

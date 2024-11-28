@@ -20,16 +20,23 @@ CALL getAverageSalesByProduct(11, 2024);
 -- #2.2
 DROP PROCEDURE Order_Status_Details
 
--DELIMITER $$
+DELIMITER $$
+
 CREATE PROCEDURE Order_Status_Details(start_date DATE, end_date DATE)
 BEGIN
-SELECT o.id, p.productName, i.status FROM orders o
-JOIN items i ON i.orderID = o.id
-JOIN Products p ON p.id = i.productID
-WHERE start_date <= o.date AND o.date <= end_date;
+    IF start_date > end_date THEN
+        SET start_date = DATE_FORMAT(end_date, '%Y-%m-01');
+    END IF;
+
+    SELECT o.id, p.productName, i.status 
+    FROM orders o
+    JOIN items i ON i.orderID = o.id
+    JOIN product p ON p.id = i.productID
+    WHERE start_date <= o.date AND o.date <= end_date;
 END$$
 
 DELIMITER ;
+
 
 CALL Order_Status_Details(DATE("2024-11-01"),DATE("2024-11-29"));
 

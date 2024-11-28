@@ -20,7 +20,8 @@ CREATE TABLE storefront.product (
     productName VARCHAR(50) NOT NULL,
     productDescription VARCHAR(200),
     cost int NOT NULL DEFAULT 0,
-    stock int NOT NULL DEFAULT 0
+    stock int NOT NULL DEFAULT 0,
+    isActive boolean NOT NULL DEFAULT true
 );
 
 -- Creation of Images table

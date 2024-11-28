@@ -24,7 +24,7 @@ public interface Shape {
 
 class Circle implements Shape {
 
-    static double pi = 3.14;
+    final double PI = 3.14;
     Point origin;
     double radius;
     ShapeType type = ShapeType.Circle;
@@ -41,7 +41,7 @@ class Circle implements Shape {
      */
     @Override
     public double getArea(){
-        return Math.round(radius * radius * pi * 100.0) / 100.0;
+        return Math.round(radius * radius * PI * 100.0) / 100.0;
     }
 
     /**
@@ -49,7 +49,7 @@ class Circle implements Shape {
      */
     @Override
     public double getPerimeter(){
-        return 2 * pi * radius;
+        return 2 * PI * radius;
     }
 
     /**

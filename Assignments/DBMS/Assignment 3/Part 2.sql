@@ -19,7 +19,9 @@ GROUP BY p.productName
 ORDER BY numberOfUnits DESC LIMIT 20;
 
 -- #3.4
-SELECT
+CREATE VIEW monthlySales 
+AS
+(SELECT
 CASE
     WHEN DATEDIFF(CURRENT_DATE(), o.date) BETWEEN 0 AND 30 THEN "MONTH 1"
     WHEN DATEDIFF(CURRENT_DATE(), o.date) BETWEEN 31 AND 60 THEN "MONTH 2"
@@ -30,11 +32,13 @@ CASE
     WHEN DATEDIFF(CURRENT_DATE(), o.date) > 180 THEN "REST"
 END as month, SUM(o.amount)
 FROM orders o
-GROUP BY month;
+GROUP BY month);
+
+SELECT * FROM monthlySales;
 
 -- #3.5
 UPDATE product
-SET stock = 0
+SET isActive = false
 WHERE id NOT IN(
     SELECT DISTINCT i.productID FROM items i
     JOIN orders o ON o.id = i.orderID
@@ -45,7 +49,7 @@ WHERE id NOT IN(
 SELECT c.categoryName, pc.productID, p.productName FROM productCategory pc
 JOIN category c ON c.id = pc.categoryID
 JOIN product p ON pc.productID = p.id
-WHERE c.categoryName LIKE "Laptops";
+WHERE c.categoryName LIKE "Lap%";
 
 -- #3.7
 SELECT p.productName, count(i.productID) FROM product p

@@ -10,6 +10,7 @@ body {
   background: url("../Images/bodybg.png");
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 header {
@@ -223,13 +224,6 @@ nav a {
   gap: 150px;
 }
 
-.middle3Content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 150px;
-}
-
 #backTextCloudy {
   font-size: 200px;
   color: #d7d4d4;
@@ -296,6 +290,13 @@ nav a {
 
 .middle3ScreenImg {
   z-index: 5;
+}
+
+.middle3Content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 150px;
 }
 
 #middle3 .middle3Content:nth-child(2n+1) {

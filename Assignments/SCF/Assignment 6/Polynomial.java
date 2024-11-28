@@ -31,17 +31,9 @@ final class Poly{
     public Poly addPoly(Poly p1, Poly p2){
         HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
         int n1 = p1.deg.length;
-        int n2 = p2.deg.length;                                  //0 1 5 6
-        for(int i = 0; i < n1; i++){                            //1 2 4 5     // 1 + 2*x + 4*x^5 + 5*x^6
-
-                                                                // 0 1 3
-                                                                // 5 6 7
+        int n2 = p2.deg.length;
+        for(int i = 0; i < n1; i++){
             map.put(p1.deg[i],p1.coeff[i]);                     
-                                                            // 0 -> 6
-                                                            // 1 -> 8
-                                                            // 5 -> 4
-                                                            // 6 -> 5
-                                                            // 3 -> 7
         }
         for(int j = 0; j < n2; j++){
             if(map.containsKey(p2.deg[j])){

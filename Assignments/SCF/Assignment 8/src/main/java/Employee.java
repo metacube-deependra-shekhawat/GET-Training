@@ -17,7 +17,7 @@ class AdminEmployee extends Employee {
 
     public AdminEmployee(String name, int salary, int bonus){
         this.name = name;
-        this.id = "Adm"+count++;
+        this.id = "AD"+count++;
         this.basicSalary = salary;
         this.bonus = bonus;
         this.compensation = salary+bonus;
@@ -45,7 +45,7 @@ class DeveloperEmployee extends Employee {
 
     public DeveloperEmployee(String name, int salary, int bonus){
         this.name = name;
-        this.id = "Dvp"+count++;
+        this.id = "DP"+count++;
         this.basicSalary = salary;
         this.bonus = bonus;
         this.compensation = salary+bonus;

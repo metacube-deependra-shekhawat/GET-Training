@@ -5,8 +5,7 @@ RETURNS INT deterministic
 BEGIN
     DECLARE ret INT;
     SET ret = (SELECT COUNT(o.id)  FROM storefront.orders o
-    WHERE MONTH(o.date) = MONTH AND YEAR(o.date) = YEAR
-    GROUP BY o.date);
+    WHERE MONTH(o.date) = MONTH AND YEAR(o.date) = YEAR);
     RETURN ret;
 END$$
 DELIMITER ;
