@@ -8,23 +8,31 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <script src="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/script/monochrome/bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.min.css">
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
       defer
     ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.4.47/css/materialdesignicons.min.css"
+        integrity="sha512-/k658G6UsCvbkGRB3vPXpsPHgWeduJwiWGPCGS14IQw3xpr63AEMdA8nMYG2gmYkXitQxDTn6iiK/2fD4T87qA==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css" 
+      integrity="sha512-T7lIYojLrqj7eBrV1NvUSZplDBi8mFyIEGFGdox8Bic92Col3GVrscbJkL37AJoDmF2iAh81fRpO4XZukI6kbA==" 
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="css/app.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/icons.min.css" type="text/css" />
 </head>
 <body>
-    <div class="row">
+    <div class="row wrapperDP">
         <div id="sideBar" class="col-2">
                 <nav>
                 <div class="h-100" id="leftside-menu-container" data-simplebar>
@@ -33,8 +41,7 @@
                         <li class="side-nav-title">Navigation</li>
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                                <i class="uil-home-alt"></i>
-                                <span class="badge bg-success float-end">5</span>
+                                <i class="uil-home"></i>
                                 <span> Dashboards </span>
                             </a>
                             <div class="collapse" id="sidebarDashboards">
@@ -385,6 +392,56 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="dropdown">
+                            <button class="btn bg-transparent" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="ri-apps-2-line font-22"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg p-0">
+                                <div class="p-2">
+                                    <div class="row g-0">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="https://coderthemes.com/hyper_2/saas/assets/images/brands/slack.png" alt="slack">
+                                                <span>Slack</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="https://coderthemes.com/hyper_2/saas/assets/images/brands/github.png" alt="Github">
+                                                <span>GitHub</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="https://coderthemes.com/hyper_2/saas/assets/images/brands/dribbble.png" alt="dribbble">
+                                                <span>Dribbble</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-0">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="https://coderthemes.com/hyper_2/saas/assets/images/brands/bitbucket.png" alt="bitbucket">
+                                                <span>Bitbucket</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="https://coderthemes.com/hyper_2/saas/assets/images/brands/dropbox.png" alt="dropbox">
+                                                <span>Dropbox</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="https://coderthemes.com/hyper_2/saas/assets/images/brands/slack.png" alt="G Suite">
+                                                <span>G Suite</span>
+                                            </a>
+                                        </div>
+                                    </div> <!-- end row-->
+                                </div>
+                            </div>
+                        </div>
                         <div class="mx-2">
                             <i class="fa fa-bell fs-4"></i>
                         </div>
@@ -395,13 +452,8 @@
                             <i class="fa fa-moon-o fs-4"></i>
                         </div>
                         <div class="mx-2">
-                            <i class="fa fa-cubes fs-4"></i>
+                            <i class="ri-fullscreen-line font-22"></i>
                         </div>
-                        <li class="d-none d-md-inline-block">
-                            <a class="nav-link" href="" data-toggle="fullscreen">
-                                <i class="ri-fullscreen-line font-22"></i>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
                 <div class="dropdown mx-3">
@@ -535,7 +587,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
-                                    <div class="d-flex justify-content-center mb-2 chartjs-chart" style="height: 253px;">
+                                    <div class="d-flex justify-content-center mb-2 chartjs-chart" style="height: 250px;">
                                         <canvas id="chart"></canvas>
                                     </div>
 
@@ -688,19 +740,16 @@
                                                         <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                                     </td>
                                                 </tr>
-
                                             </tbody>
                                         </table>
-                                    </div> <!-- end table-responsive-->
-
-                                </div> <!-- end card body-->
-                            </div> <!-- end card -->
-                        </div><!-- end col-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- end row-->
                 </div>
             </main>
-            <footer class="mt-5">
+            <footer class="mt-5 px-5 py-2">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6">
