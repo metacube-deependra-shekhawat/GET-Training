@@ -5,9 +5,6 @@ var empFormInd = 0;
 var vehFormInd = 0;
 
 
-
-// Employee Form Methods
-
 const empDetails = {
     empName: "",
     empGender: "",
@@ -23,6 +20,25 @@ const empDetailsValidated = {
     empEmail: false,
     empPassword: false,
     empContact: false
+};
+
+const vehicleDetails = {
+    empId: "",
+    vehMake: "",
+    vehModel: "",
+    vehType: "",
+    vehNumber: "",
+    vehDesc: "",
+    vehId: ""
+};
+
+const vehicleDetailsValidated = {
+    empId:false,
+    vehMake:false,
+    vehModel:false,
+    vehType:false,
+    vehNumber:false,
+    vehDesc:false
 };
 
 
@@ -77,7 +93,7 @@ function saveEmpContact() {
 function saveEmpPassword1() {
     let textField = document.getElementById("password");    
     let passwordText = textField.value;
-    const passwordRegex =  RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
+    const passwordRegex = RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
     if(passwordRegex.test(passwordText)){
         empDetails.empPassword = passwordText;
         if(passwordText.length > 12){
@@ -130,7 +146,7 @@ function resetEmpForm() {
     contactTextField.value = "";
     contactTextField.style.borderColor = "#ccc";
     document.getElementById("empNextButton").classList.toggle("d-none");
-    document.getElementById("submitButton").classList.toggle("d-none");
+    document.getElementById("submitEmpButton").classList.toggle("d-none");
     empFormInd = 0;
 }
 
@@ -145,13 +161,15 @@ function submitEmpForm() {
         resetEmpForm();
         return;
     }
-    resetEmpForm();
     let empIndex = employees.length;
     empDetails.empId = "Meta-Emp-" + (empIndex+1);
     employees.push(empDetails);
     document.getElementById("empId").innerText = empDetails.empId;
     let modal = new bootstrap.Modal(document.getElementById("addEmpModal"));
     modal.show();
+    resetEmpForm();
+    toggleEmpForm();
+    toggleVehForm();
 }
 
 function employeeNext() {
@@ -191,7 +209,7 @@ function employeeNext() {
         let empField4 = document.getElementById("employeeField4");
         let empField5 = document.getElementById("employeeField5");
         document.getElementById("empNextButton").classList.toggle("d-none");
-        document.getElementById("submitButton").classList.toggle("d-none");
+        document.getElementById("submitEmpButton").classList.toggle("d-none");
         empField4.classList.toggle("d-none");
         empField5.classList.toggle("d-none");
     }
@@ -202,24 +220,6 @@ function employeeNext() {
 
 // Vehicle Form Methods
 
-
-const vehicleDetails = {
-    empId: "",
-    vehMake: "",
-    vehModel: "",
-    vehType: "",
-    vehNumber: "",
-    vehDesc: ""
-};
-
-const vehicleDetailsValidated = {
-    empId:false,
-    vehMake:false,
-    vehModel:false,
-    vehType:false,
-    vehNumber:false,
-    vehDesc:false
-};
 
 function saveVehEmpId() {
     let textField = document.getElementById("vehEmpID");
@@ -236,7 +236,7 @@ function saveVehMake() {
     let textField = document.getElementById("vehicleMake");
     let makeText = textField.value;
     if(makeText.length > 3){
-        vehicleDetails.empId = makeText;
+        vehicleDetails.vehMake = makeText;
         vehicleDetailsValidated.vehMake = true;
     } else {
         vehicleDetailsValidated.vehMake = false;
@@ -265,6 +265,7 @@ function saveVehNumber() {
     let numberText = textField.value;
     if(numberText.length >= 6){
         vehicleDetails.vehNumber = numberText;
+        console.log(vehicleDetails.vehNumber);
         vehicleDetailsValidated.vehNumber = true;
     } else {
         vehicleDetailsValidated.vehNumber = false;
@@ -282,24 +283,55 @@ function saveVehIdentification() {
     }   
 }
 
+function resetVehForm() {
+    document.getElementById("vehicleField1").classList.toggle("d-none");
+    document.getElementById("vehicleField6").classList.toggle("d-none");
+    vehicleDetails.empId = "";
+    vehicleDetails.vehDesc = "";
+    vehicleDetails.vehMake = "";
+    vehicleDetails.vehModel = "";
+    vehicleDetails.vehType = "";
+    vehicleDetails.vehNumber = "";
+    vehicleDetails.vehId = "";
+    vehicleDetailsValidated.empId = false;
+    vehicleDetailsValidated.vehDesc = false;
+    vehicleDetailsValidated.vehMake = false
+    vehicleDetailsValidated.vehModel = false
+    vehicleDetailsValidated.vehNumber = false
+    let empTextField = document.getElementById("vehEmpID");
+    empTextField.value = "";
+    let makeTextField = document.getElementById("vehicleMake");
+    makeTextField.value = "";
+    let modelTextField = document.getElementById("vehicleModel");
+    modelTextField.value = "";
+    let numberTextField = document.getElementById("vehicleNumber");
+    numberTextField.value = "";
+    let descTextField = document.getElementById("identification");
+    descTextField.value = "";
+    document.getElementById("vehNextButton").classList.toggle("d-none");
+    document.getElementById("submitVehButton").classList.toggle("d-none");
+    vehFormInd = 0;
+}
+
 function submitVehForm() {
     if(!vehicleDetailsValidated.vehDesc){
         alert("Please enter a some details about your vehicle for identification");
         return;
-    }
+    } 
     if(!vehicleDetailsValidated.vehMake || !vehicleDetailsValidated.vehModel || !vehicleDetailsValidated.vehNumber || !vehicleDetailsValidated.vehType || !vehicleDetailsValidated.empId || !vehicleDetailsValidated.vehDesc) {
-        document.getElementById("empModalMessageSuccess").classList.toggle("d-none");
-        document.getElementById("empModalMessageFailed").classList.toggle("d-none");
+        document.getElementById("vehModalMessageSuccess").classList.toggle("d-none");
+        document.getElementById("vehModalMessageFailed").classList.toggle("d-none");
         resetVehForm();
         return;
     }
-    resetVehForm();
-    let empIndex = employees.length;
-    empDetails.empId = "Meta-Emp-" + (empIndex+1);
-    employees.push(empDetails);
-    document.getElementById("empId").innerText = empDetails.empId;
-    let modal = new bootstrap.Modal(document.getElementById("addEmpModal"));
+    let vehIndex = vehicles.length;
+    vehicleDetails.vehId = "Meta-Veh-" + (vehIndex+1);
+    vehicles.push(vehicleDetails);
+    document.getElementById("vehId").innerText = vehicleDetails.vehId;
+    let modal = new bootstrap.Modal(document.getElementById("addVehModal"));
     modal.show();
+    resetVehForm();
+    toggleVehForm();
 }
 
 function vehicleNext() {
@@ -308,15 +340,15 @@ function vehicleNext() {
             alert("Enter a proper employee id");
             return;
         }
-        // let isEmpFound = false;
-        // for(let i = 0; i < employees.length; i++){
-        //     if(employees[i].empId == vehicleDetails.empId) isEmpFound = true;
-        // }
-        // if(!isEmpFound){
-        //     alert("No employee found with provided id");
-        //     reset();
-        //     return;
-        // }
+        let isEmpFound = false;
+        for(let i = 0; i < employees.length; i++){
+            if(employees[i].empId == vehicleDetails.empId) isEmpFound = true;
+        }
+        if(!isEmpFound){
+            alert("No employee found with provided id");
+            resetVehForm();
+            return;
+        }
         document.getElementById("vehicleField1").classList.toggle("d-none");
         document.getElementById("vehicleField2").classList.toggle("d-none");
     } else if(vehFormInd == 1){
@@ -359,4 +391,150 @@ function vehicleNext() {
         vehField6.classList.toggle("d-none");
     }
     vehFormInd++;
+}
+
+function saveCurrency(currInd){
+    if(currInd == 1){
+        const collection = document.getElementsByClassName("currUsd");
+        for (let i = 0; i < collection.length; i++) {
+            collection[i].checked = true;
+        }
+        document.getElementById("cycleDaily").innerHTML = "5 USD/Daily";
+        document.getElementById("bikeDaily").innerHTML = "10 USD/Daily";
+        document.getElementById("carDaily").innerHTML = "20 USD/Daily";
+        document.getElementById("cycleMonthly").innerHTML = "100 USD/Monthly";
+        document.getElementById("bikeMonthly").innerHTML = "200 USD/Monthly";
+        document.getElementById("carMonthly").innerHTML = "500 USD/Monthly";
+        document.getElementById("cycleYearly").innerHTML = "500 USD/Yearly";
+        document.getElementById("bikeYearly").innerHTML = "1000 USD/Yearly";
+        document.getElementById("carYearly").innerHTML = "3500 USD/Yearly";
+    } else if(currInd == 2){
+        const collection = document.getElementsByClassName("currInr");
+        for (let i = 0; i < collection.length; i++) {
+            collection[i].checked = true;
+        }
+        document.getElementById("cycleDaily").innerHTML = "425 INR/Daily";
+        document.getElementById("bikeDaily").innerHTML = "850 INR/Daily";
+        document.getElementById("carDaily").innerHTML = "1700 INR/Daily";
+        document.getElementById("cycleMonthly").innerHTML = "8500 INR/Monthly";
+        document.getElementById("bikeMonthly").innerHTML = "17000 INR/Monthly";
+        document.getElementById("carMonthly").innerHTML = "42000 INR/Monthly";
+        document.getElementById("cycleYearly").innerHTML = "42000 INR/Yearly";
+        document.getElementById("bikeYearly").innerHTML = "84000 INR/Yearly";
+        document.getElementById("carYearly").innerHTML = "300000 INR/Yearly";
+    } else if(currInd == 3){
+        const collection = document.getElementsByClassName("currYen");
+        for (let i = 0; i < collection.length; i++) {
+            collection[i].checked = true;
+        }
+        document.getElementById("cycleDaily").innerHTML = "750 YEN/Daily";
+        document.getElementById("bikeDaily").innerHTML = "1500 YEN/Daily";
+        document.getElementById("carDaily").innerHTML = "3000 YEN/Daily";
+        document.getElementById("cycleMonthly").innerHTML = "15000 YEN/Monthly";
+        document.getElementById("bikeMonthly").innerHTML = "30000 YEN/Monthly";
+        document.getElementById("carMonthly").innerHTML = "75000 YEN/Monthly";
+        document.getElementById("cycleYearly").innerHTML = "75000 YEN/Yearly";
+        document.getElementById("bikeYearly").innerHTML = "150000 YEN/Yearly";
+        document.getElementById("carYearly").innerHTML = "500000 YEN/Yearly";
+    }
+}
+
+
+function expandPassForm(param){
+    if(param == 1){
+        const collection = document.getElementsByClassName("cycleForm");
+        for (let i = 0; i < collection.length; i++) {
+            collection[i].checked = true;
+        }
+        document.getElementById("cyclePassDiv").classList.remove("d-none");
+        document.getElementById("bikePassDiv").classList.add("d-none");
+        document.getElementById("carPassDiv").classList.add("d-none");
+        document.getElementById("cyclePassDiv").scrollIntoView({behavior: 'smooth'});
+    } else if(param == 2) {
+        const collection = document.getElementsByClassName("bikeForm");
+        for (let i = 0; i < collection.length; i++) {
+            collection[i].checked = true;
+        }
+        document.getElementById("cyclePassDiv").classList.add("d-none");
+        document.getElementById("bikePassDiv").classList.remove("d-none");
+        document.getElementById("carPassDiv").classList.add("d-none");
+        document.getElementById("bikePassDiv").scrollIntoView({behavior: 'smooth'});
+    } else if(param == 3){
+        const collection = document.getElementsByClassName("carForm");
+        for (let i = 0; i < collection.length; i++) {
+            collection[i].checked = true;
+        }
+        document.getElementById("cyclePassDiv").classList.add("d-none");
+        document.getElementById("bikePassDiv").classList.add("d-none");
+        document.getElementById("carPassDiv").classList.remove("d-none");
+        document.getElementById("carPassDiv").scrollIntoView({behavior: 'smooth'});
+    }
+}
+
+function getCyclePass(){
+    let textField = document.getElementById("cycleVehID");
+    let currVehId = textField.value;
+    console.log(currVehId);
+    let flag = false;
+    for(let i = 0; i < vehicles.length; i++){
+        if(vehicles[i].vehId == currVehId && vehicles[i].vehType == "Cycle"){
+            flag = true;
+            break;
+        }
+    }
+    if(flag == false){
+        alert("Please enter a vaild vehicle id");
+        return;
+    }
+    let modal = new bootstrap.Modal(document.getElementById("passModal"));
+    modal.show();
+}
+
+function getBikePass(){
+    let textField = document.getElementById("bikeVehID");
+    let currVehId = textField.value;
+    let flag = false;
+    for(let i = 0; i < vehicles.length; i++){
+        if(vehicles[i].vehId == currVehId && vehicles[i].vehType === "MotorBike"){
+            flag = true;
+            break;
+        }
+    }
+    if(flag == false){
+        alert("Please enter a vaild vehicle id");
+        return;
+    }
+    let modal = new bootstrap.Modal(document.getElementById("passModal"));
+    modal.show();
+}
+
+function getCarPass(){
+    let textField = document.getElementById("carVehID");
+    let currVehId = textField.value;
+    let flag = false;
+    console.log(vehicles);
+    for(let i = 0; i < vehicles.length; i++){
+        if(vehicles[i].vehId == currVehId && vehicles[i].vehType === "Car"){
+            flag = true;
+            break;
+        }
+    }
+    if(flag == false){
+        alert("Please enter a vaild vehicle id");
+        return;
+    }
+    let modal = new bootstrap.Modal(document.getElementById("passModal"));
+    modal.show();
+}
+
+function toggleEmpForm() {
+    document.getElementById("addEmpForm").classList.toggle("d-none");
+    document.getElementById("addVehForm").classList.add("d-none");
+    document.getElementById("addEmployee").scrollIntoView({behavior: 'smooth'});
+}
+
+function toggleVehForm() {
+    document.getElementById("addVehForm").classList.toggle("d-none");
+    document.getElementById("addEmpForm").classList.add("d-none");
+    document.getElementById("addVehicle").scrollIntoView({behavior: 'smooth'});
 }

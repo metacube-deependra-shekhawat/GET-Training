@@ -54,13 +54,6 @@ nav {
     margin: 5px 10px 5px 10px;
 }
 
-.collap {
-    display: none;
-}
-
-.toggle:checked + .headingDiv + .collap {
-    display: block;
-}
 
 .formSectionDiv {
     padding: 20px 50px;
