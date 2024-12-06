@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Assignment 9</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"></link>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="Styles/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="navItem" href="#addemployee" onclick="toggleEmpForm()">Add Employee</a>
+            <a class="navItem" href="#addvehicle" onclick="toggleVehForm()">Add Vehicle</a>
+            <a class="navItem" href="#feedback">Give Feedback</a>
+            <a class="navItem" href="#pricing">Pricing</a>
+        </nav>
+    </header>
+    <main>
+        <img id="mainImage" src="Images/Parking.png">
+        <!-- Section for adding a new Employee -->
+        <div id="mainContent">
+            <section id="addemployee">
+                <label class="headingDiv" onclick="toggleEmpForm()">Add Employee</label>
+                <div id="addEmpForm" class="d-none">
+                    <div class="formSectionDiv">
+                        <img src="Images/emp.png">
+                        <div class="form">
+                            <!-- Input name -->
+                            <div id="employeeField1">
+                                <label for="name">Full name:</label>
+                                <input type="text" id="fname" name="fname" onkeyup="saveEmpName()">
+                            </div>
+                            <!-- Input gender -->
+                            <p id="empNameLine" class="d-none"><span class="empName">HelloNo</span>, Please tell me your gender</p>
+                            <div id="employeeField2" class="radioDiv d-none">
+                                <label for="gender" class="px-1">Gender:</label>
+                                <input type="radio" id="male" name="gender" value="Male" onclick="saveEmpGender()">
+                                <label for="male">Male</label>
+                                <input type="radio" id="female" name="gender" value="Female" onclick="saveEmpGender()">
+                                <label for="female">Female</label>
+                            </div>
+                            <!-- Input email -->
+                            <div id="employeeField3" class="d-none">
+                                <label for="email">Email: </label>
+                                <input type="email" id="email" name="email" onkeyup="saveEmpEmail()">
+                            </div>
+                            <!-- Input password & confirmation -->
+                            <div id="employeeField4" class="d-none">
+                                <label for="password">Password: </label>
+                                <input type="password" id="password" name="password" onkeyup="saveEmpPassword1()">
+                                <label for="password2">Confirm Password: </label>
+                                <input type="password" id="password2" name="password2" onkeyup="saveEmpPassword2()">
+                            </div>
+                            <!-- Input contact number -->
+                            <div id="employeeField5" class="d-none">
+                                <label for="contact">Contact Number: </label>
+                                <input type="tel" id="contact" name="contact" onkeyup="saveEmpContact()">
+                            </div>
+                            <!-- Button to submit -->
+                            <br>
+                            <button id="empNextButton" onclick="employeeNext()">Next</button>
+                            <button type="button" id="submitEmpButton" class="d-none" onclick="submitEmpForm()"  data-bs-target="#addEmpModal">
+                               Submit
+                            </button>
+                        </div><br><br>
+                    </div>
+                </div>
+                <div class="modal fade" id="addEmpModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Notification</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="empModalMessageSuccess">Your Employee Id number is: <strong id="empId"></strong></p>
+                            <p id="empModalMessageFailed" class="d-none">Something went wrong, Please try again.</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section to add a new vehicle -->
+            <section id="addvehicle">
+                <label class="headingDiv" onclick="toggleVehForm()">Add Vehicle</label>
+                <div id="addVehForm" class="d-none">
+                    <div class="formSectionDiv">
+                        <div class="form">
+                            <!-- Input for employee id -->
+                            <div id="vehicleField1">
+                                <label for="empID">Employee ID</label>
+                                <input type="text" id="vehEmpID" name="vehEempID" onkeyup="saveVehEmpId()"><br><br>
+                            </div>
+                            <!-- Input for vehicle make -->
+                            <div id="vehicleField2" class="d-none">
+                                <label for="vehicleMake">Brand: </label>
+                                <input type="text" id="vehicleMake" name="vehicleMake" onkeyup="saveVehMake()"><br><br>
+                            </div>
+                            <!-- Input for vehicle model -->
+                            <div id="vehicleField3" class="d-none">
+                                <label for="vehicleModel">Model: </label>
+                                <input type="text" id="vehicleModel" name="vehicleModel" onkeyup="saveVehModel()"><br><br>
+                            </div>
+                            <!-- Input for vehicle type -->
+                            <div id="vehicleField4" class="d-none">
+                                <div class="radioDiv">
+                                    <label for="vehicleType" class="px-1">Type: </label>
+                                    <input type="radio" id="cycle" name="vehicleType" value="Cycle" onclick="saveVehType()">
+                                    <label for="cycle">Cycle</label>
+                                    <input type="radio" id="motorbike" name="vehicleType" value="MotoBike" onclick="saveVehType()">
+                                    <label for="motorbike">MotorBike</label>
+                                    <input type="radio" id="car" name="vehicleType" value="Car" onclick="saveVehType()">
+                                    <label for="car">Car</label><br><br>
+                                </div>
+                            </div>
+                            <!-- Input for vehicle number -->
+                            <div id="vehicleField5" class="d-none">
+                                <label for="vehicleNumber">Vehicle Number</label>
+                                <input type="text" id="vehicleNumber" name="vehicleNumber" onkeyup="saveVehNumber()"><br><br>
+                            </div>
+                            <!-- Input for vehicle identification -->
+                            <div id="vehicleField6" class="d-none">
+                                <label for="identification">Identification</label>
+                                <textarea id="identification" name="identification" onchange="saveVehIdentification()"></textarea><br><br>
+                            </div>
+                            <!-- Button to submit -->
+                            <button id="vehNextButton" onclick="vehicleNext()">Next</button>
+                            <button type="button" id="submitVehButton" class="d-none" onclick="submitVehForm()"  data-bs-target="#addEmpModal">
+                               Submit
+                            </button>
+                        </div>
+                        <img src="Images/car.png">
+                    </div>
+                </div>
+                <div class="modal fade" id="addVehModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Notification</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="vehModalMessageSuccess">Your Vehicle Id number is: <strong id="vehId"></strong></p>
+                            <p id="vehModalMessageFailed" class="d-none">Something went wrong, Please try again.</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="pricing">
+                <!-- Section for displaying Pricing -->
+                <label class="headingDiv">Purchase Pass</label>
+                <div class="d-flex my-4">
+                    <img src="Images/Pass.png" style="margin-left: 200px;">
+                    <div id="cyclePassDiv" class="form m-auto my-4" style="width: 700px">
+                        <div class="radioDiv">
+                            <label for="cycleCurrType" class="px-1">Vehicle Type: </label>
+                            <input type="radio" class="cycleForm" name="vehicleType1" value="Bike" checked onclick="expandPassForm(1)">
+                            <label for="cycleForm">Cycle</label>
+                            <input type="radio" class="bikeForm" name="vehicleType1" value="Bike" onclick="expandPassForm(2)">
+                            <label for="bikeForm">Bike</label>
+                            <input type="radio" class="carForm" name="vehicleType1" value="Car" onclick="expandPassForm(3)">
+                            <label for="carForm">Car</label><br><br>
+                        </div>
+                        <div class="radioDiv">
+                            <label for="cycleCurrType" class="px-1">Currency: </label>
+                            <input type="radio" class="currUsd" name="cycleCurrType" value="USD" checked onclick="saveCurrency(1)">
+                            <label for="currUsd">USD</label>
+                            <input type="radio" class="currInr" name="cycleCurrType" value="INR" onclick="saveCurrency(2)">
+                            <label for="currInr">INR</label>
+                            <input type="radio" class="currYen" name="cycleCurrType" value="YEN" onclick="saveCurrency(3)">
+                            <label for="currYen">YEN</label><br><br>
+                        </div>
+                        <div class="radioDiv">
+                            <label for="cyclePass" class="px-1">Pass Type: </label>
+                            <input type="radio" id="daily" name="cyclePass" value="USD" checked onclick="savePass(1)">
+                            <label for="daily"><span id="cycleDaily">5 USD/Day</span></label>
+                            <input type="radio" id="monthly" name="cyclePass" value="INR" onclick="savePass(2)">
+                            <label for="monthly"><span id="cycleMonthly">100 USD/Month</span></label>
+                            <input type="radio" id="yearly" name="cyclePass" value="YEN" onclick="savePass(3)">
+                            <label for="yearly"><span id="cycleYearly">500 USD/Year</span></label><br><br>
+                        </div>
+                        <div>
+                            <label for="cycleEmpID">Vehicle ID</label>
+                            <input type="text" id="cycleVehID" name="cyclePassVehID" onkeyup=""><br><br>
+                        </div> 
+                        <button onclick="getCyclePass()">Get Pass</button>
+                    </div>
+                    <div id="bikePassDiv" class="form m-auto my-4 d-none" style="width: 700px">
+                        <div class="radioDiv">
+                            <label for="cycleCurrType" class="px-1">Vehicle Type: </label>
+                            <input type="radio" class="cycleForm" name="vehicleType2" value="Bike" checked onclick="expandPassForm(1)">
+                            <label for="cycleForm">Cycle</label>
+                            <input type="radio" class="bikeForm" name="vehicleType2" value="Bike" onclick="expandPassForm(2)">
+                            <label for="bikeForm">Bike</label>
+                            <input type="radio" class="carForm" name="vehicleType2" value="Car" onclick="expandPassForm(3)">
+                            <label for="carForm">Car</label><br><br>
+                        </div>
+                        <div class="radioDiv">
+                            <label for="bikeCurrType" class="px-1">Currency: </label>
+                            <input type="radio" class="currUsd" name="bikeCurrType" value="USD" checked onclick="saveCurrency(1)">
+                            <label for="currUsd">USD</label>
+                            <input type="radio" class="currInr" name="bikeCurrType" value="INR" onclick="saveCurrency(2)">
+                            <label for="currInr">INR</label>
+                            <input type="radio" class="currYen" name="bikeCurrType" value="YEN" onclick="saveCurrency(3)">
+                            <label for="currYen">YEN</label><br><br>
+                        </div>
+                        <div class="radioDiv">
+                            <label for="bikePass" class="px-1">Pass Type: </label>
+                            <input type="radio" id="daily" name="bikePass" value="USD" checked onclick="savePass(1)">
+                            <label for="daily"><span id="bikeDaily">10 USD/Day</span></label>
+                            <input type="radio" id="monthly" name="bikePass" value="INR" onclick="savePass(2)">
+                            <label for="monthly"><span id="bikeMonthly">200 USD/Month</span></label>
+                            <input type="radio" id="yearly" name="bikePass" value="YEN" onclick="savePass(3)">
+                            <label for="yearly"><span id="bikeYearly">1000 USD/Year</span></label><br><br>
+                        </div>
+                        <div>
+                            <label for="bikePassEmpID">Vehicle ID</label>
+                            <input type="text" id="bikeVehID" name="bikePassVehID" onkeyup=""><br><br>
+                        </div> 
+                        <button onclick="getBikePass()">Get Pass</button>
+                    </div>
+
+                    <div id="carPassDiv" class="form m-auto my-4 d-none" style="width: 700px">
+                        <div class="radioDiv">
+                            <label for="cycleCurrType" class="px-1">Vehicle Type: </label>
+                            <input type="radio" class="cycleForm" name="vehicleType3" value="Bike" checked onclick="expandPassForm(1)">
+                            <label for="cycleForm">Cycle</label>
+                            <input type="radio" class="bikeForm" name="vehicleType3" value="Bike" onclick="expandPassForm(2)">
+                            <label for="bikeForm">Bike</label>
+                            <input type="radio" class="carForm" name="vehicleType3" value="Car" onclick="expandPassForm(3)">
+                            <label for="carForm">Car</label><br><br>
+                        </div>
+                        <div class="radioDiv">
+                            <label for="carCurrType" class="px-1">Currency: </label>
+                            <input type="radio" class="currUsd" name="carCurrType" value="USD" checked onclick="saveCurrency(1)">
+                            <label for="currUsd">USD</label>
+                            <input type="radio" class="currInr" name="carCurrType" value="INR" onclick="saveCurrency(2)">
+                            <label for="currInr">INR</label>
+                            <input type="radio" class="currYen" name="carCurrType" value="YEN" onclick="saveCurrency(3)">
+                            <label for="currYen">YEN</label><br><br>
+                        </div>
+                        <div class="radioDiv">
+                            <label for="carPass" class="px-1">Pass Type: </label>
+                            <input type="radio" id="daily" name="carPass" value="USD" checked onclick="savePass(1)">
+                            <label for="daily"><span id="carDaily">20 USD/Day</span></label>
+                            <input type="radio" id="monthly" name="carPass" value="INR" onclick="savePass(2)">
+                            <label for="monthly"><span id="carMonthly">500 USD/Month</span></label>
+                            <input type="radio" id="yearly" name="carPass" value="YEN" onclick="savePass(3)">
+                            <label for="yearly"><span id="carYearly">3500 USD/Year</span></label><br><br>
+                        </div>
+                        <div>
+                            <label for="carPassEmpID">Vehicle ID</label>
+                            <input type="text" id="carVehID" name="carPassVehID" onkeyup=""><br><br>
+                        </div> 
+                        <button onclick="getCarPass()">Get Pass</button>
+                    </div>
+                    <div class="modal fade" id="passModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Notification</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Pass Purchased</p>
+                                <p>Thank You</p>
+                            </div>
+                            </div>
+                    </div>
+                </div>               
+            </div>
+            </section>
+            <section id="feedback">
+                <label class="headingDiv">Get in Touch</label>
+                <div class="formSectionDiv">
+                    <div class="form">
+                        <!-- Input name -->
+                        <label for="name">Full name:</label>
+                        <input type="text" id="fname" name="fname"><br><br>
+                        <!-- Input email -->
+                        <label for="email">Email: </label>
+                        <input type="email" id="email" name="email"><br><br>
+                        <!-- Input subject -->
+                        <label for="subject">Subject: </label>
+                        <input type="text" id="subject" name="subject"><br><br>
+                        <!-- Input for message-->
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message"></textarea><br><br>
+                        <!-- Button to submit -->
+                        <button type="submit" >Send Email</button>
+                    </form>
+                </div>
+                <img src="Images/feedback.png">
+            </section>
+                <footer id="footer">
+                    <p class="my-2">All Rights Reserved @metacube</p>
+            </footer>
+        </div>
+    </main>
+</body>
+</html>

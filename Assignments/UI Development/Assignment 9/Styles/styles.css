@@ -1,0 +1,184 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6efc0;
+}
+
+#mainImage {
+    width: 100%;
+    object-fit:contain;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+nav {
+    justify-content: space-around;
+    background-color: #00b9f2;
+    margin: 0;
+    font-size: x-large;
+    font-weight:600;
+    padding: 10px;
+}
+
+.navItem {
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+#mainContent {
+    display: flex;   
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.toggle {
+    display: none;
+}
+
+.headingDiv {
+    text-align: center;
+    background-color: #00b9f2;
+    border-radius: 10px;
+    display: block;
+    font-size:50px;
+    padding: 1px 9px 1px 20px;
+    margin: 5px 10px 5px 10px;
+}
+
+
+.formSectionDiv {
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+}
+
+.formSectionDiv > img {
+    height: 400px;
+}
+
+nav > a {
+    color: white;
+    text-decoration: none;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#pricingDiv {
+    margin: 20px;
+    padding: 10px 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.priceCard {
+    padding: 10px 150px;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.priceCard > p {
+    margin: 2px;
+}
+
+.costBorder {
+    border: 2px solid black;
+    border-radius: 100%;
+    padding: 20px;
+}
+
+.costBorder > h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.costBorder > p {
+    margin: 0;
+    padding: 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 520px;
+    margin: 0;
+    padding: 50px 30px 50px 30px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #91ece72d 0%, #89d6f518 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* font-family: 'Comic Sans MS', cursive, sans-serif; */
+}
+
+.radioDiv {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+
+.headingDiv {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
+    padding: 15px;
+}
+
+input[type="text"], input[type="email"], input[type='password'], input[type='tel'],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 5px solid #ccc;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    outline: none;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3fbaeb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff4b3e;
+}
+
+textarea {
+    height: 80px;
+}
+
+input[type="radio"] + label {
+    margin-right: 15px;
+    color: #555;
+}
+
+#footer {
+    background-color: #3fbaeb;
+    display: flex;
+    justify-content: center;
+    color: white;
+    width: 100%;
+}
