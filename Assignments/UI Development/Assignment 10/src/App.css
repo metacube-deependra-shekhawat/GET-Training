@@ -44,7 +44,7 @@ nav {
 }
 
 .taskItems {
-  height: 700px;
+  height: 685px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,10 +53,11 @@ nav {
 }
 
 .taskTile {
-  padding: 5px 10px 5px 10px;
+  padding: 1px 10px 5px 20px;
   color: black;
   width: 400px;
-  height: 300px;
+  height: 100px;
+  border-radius: 10px;
 }
 
 .taskTitle {

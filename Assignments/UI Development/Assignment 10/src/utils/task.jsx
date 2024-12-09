@@ -7,7 +7,6 @@ function Task(props){
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    
 
     return (
         <>
@@ -18,8 +17,8 @@ function Task(props){
             <Modal open={open} onClose={handleClose}>
                 <Box id="modalStyle">
                     <p>Update Your Task</p>
-                    <input type="text" placeholder="Task Name"></input>
-                    <input type="text" placeholder="Task Description"></input>
+                    <input type="text"></input>
+                    <input type="text" value={props.desc}></input>
                     <div>
                         <label>Status</label>
                         <input type="radio" value="new" name="taskStatus"></input>
