@@ -34,6 +34,7 @@ nav {
 .taskCol {
   width: 500px;
   background-color: #636363;
+  border-radius: 20px;
 }
 
 .colHeading {
@@ -63,4 +64,9 @@ nav {
 .taskTitle {
   font-size: larger;
   font-weight: 500;
+}
+
+input[type="text"] {
+  padding: 5px;
+  font-size: large;
 }

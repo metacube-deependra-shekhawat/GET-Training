@@ -26,7 +26,8 @@ function App() {
       taskId:taskId,
       tname:tname,
       tdesc:tdesc,
-      tpriority:tpriority
+      tpriority:tpriority,
+      tstatus: 0
     });
     setNewTasks(newTasks);
     handleClose();
@@ -58,6 +59,7 @@ function App() {
           </div>
           <div>
             <button onClick={addTask}>Save Task</button>
+            <span> </span>
             <button onClick={handleClose}>Cancel</button>
           </div>
         </Box>
@@ -66,23 +68,20 @@ function App() {
         <div className="taskCol">
           <p className="colHeading">New Task</p>
           <div className="taskItems">
-            {/* <Task title={"Title of the Task"} desc={"Hello Hello"} priority={1} newTasks={newTasks} inProgressTasks={inProgressTasks} completedTasks={completedTasks} /> */}
-            <Task title={"Title of the Task"} desc={"Description for the given task"} priority={1} />
             {newTasks.map((task) => <Task id={task.taskId} title={task.tname} desc={task.tdesc} priority={task.tpriority} />)}
+            <Task title={"Title of the Task"} desc={"Description for the given task"} priority={1} />
           </div>
         </div>
         <div className="taskCol">
           <p className="colHeading">In Progress</p>
           <div className="taskItems">
-            <Task title={"Title of the Task"} desc={"Description for the given task"} priority={1} />
             <Task title={"Title of the Task"} desc={"Description for the given task"} priority={2} />
           </div>
         </div>
         <div className="taskCol">
           <p className="colHeading">Completed</p>
           <div className="taskItems">
-            <Task title={"Title of the Task"} desc={"Description for the given task"} priority={1} />
-            <Task title={"Title of the Task"} desc={"Description for the given task"} priority={2} />
+            <Task title={"Title of the Task"} desc={"Description for the given task"} priority={0} status={2} />
           </div>
         </div>
       </div>
