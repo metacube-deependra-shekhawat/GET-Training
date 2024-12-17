@@ -59,26 +59,26 @@ function Task(props){
                     <div>
                         <label>Status:</label>
                         <span> </span>
-                        <input type="radio" value="new" name="taskStatus" onChange={() => setTstatus(0)}></input>
+                        <input type="radio" value="new" name="taskStatus" defaultChecked={tstatus === 0} onChange={() => setTstatus(0)}></input>
                         <label>New</label>
                         <span> </span>
-                        <input type="radio" value="in-progress" name="taskStatus" onChange={() => setTstatus(1)}></input>
+                        <input type="radio" value="in-progress" name="taskStatus" defaultChecked={tstatus === 1} onChange={() => setTstatus(1)}></input>
                         <label>In-progress</label>
                         <span> </span>
-                        <input type="radio" value="completed" name="taskStatus" onChange={() => setTstatus(2)}></input>
+                        <input type="radio" value="completed" name="taskStatus" defaultChecked={tstatus === 2} onChange={() => setTstatus(2)}></input>
                         <label>Completed</label>
                     </div>
                     <div>
                         <label>Priority:</label>
                         <span> </span>
-                        <input type="radio" value="2" name="taskpriority" onChange={() => setTpriority(2)}></input>
-                        <label>high</label>
+                        <input type="radio" value="2" name="taskpriority" defaultChecked={tpriority === 2} onChange={() => setTpriority(2)}></input>
+                        <label>High</label>
                         <span> </span>
-                        <input type="radio" value="1" name="taskpriority" onChange={() => setTpriority(1)}></input>
-                        <label>medium</label>
+                        <input type="radio" value="1" name="taskpriority" defaultChecked={tpriority === 1} onChange={() => setTpriority(1)}></input>
+                        <label>Medium</label>
                         <span> </span>
-                        <input type="radio" value="0" name="taskpriority" onChange={() => setTpriority(0)}></input>
-                        <label>low</label>
+                        <input type="radio" value="0" name="taskpriority" defaultChecked={tpriority === 0} onChange={() => setTpriority(0)}></input>
+                        <label>Low</label>
                     </div>
                     <br/>
                     <div>
