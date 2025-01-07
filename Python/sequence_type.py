@@ -1,10 +1,7 @@
 # List
 countries = ["India", "United States", "United Kingdom"]
-# print(countries)
 countries.append("United Arab Emirates")
-# print(countries)
 countries.pop(1);
-# print(countries)
 countries.insert(1,"Sweden")
 print(countries)
 
