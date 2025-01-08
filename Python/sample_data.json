@@ -19,7 +19,7 @@
                     },
                     "history": {
                         "score": 78,
-                        "completed": false
+                        "completed": true
                     }
                 },
                 "attendance": 80
@@ -69,7 +69,7 @@
                     },
                     "history": {
                         "score": 89,
-                        "completed": false
+                        "completed": true
                     }
                 },
                 "attendance": 90
