@@ -1,0 +1,79 @@
+{
+    "students": [
+        {
+            "id": 1,
+            "name": "Alice",
+            "details": {
+                "grades": {
+                    "math": {
+                        "score": 85,
+                        "completed": true
+                    },
+                    "science": {
+                        "score": 90,
+                        "completed": true
+                    },
+                    "english": {
+                        "score": 88,
+                        "completed": true
+                    },
+                    "history": {
+                        "score": 78,
+                        "completed": false
+                    }
+                },
+                "attendance": 80
+            }
+        },
+        {
+            "id": 2,
+            "name": "Bob",
+            "details": {
+                "grades": {
+                    "math": {
+                        "score": 72,
+                        "completed": true
+                    },
+                    "science": {
+                        "score": 75,
+                        "completed": true
+                    },
+                    "english": {
+                        "score": 70,
+                        "completed": true
+                    },
+                    "history": {
+                        "score": 65,
+                        "completed": false
+                    }
+                },
+                "attendance": 65
+            }
+        },
+        {
+            "id": 3,
+            "name": "Charlie",
+            "details": {
+                "grades": {
+                    "math": {
+                        "score": 95,
+                        "completed": true
+                    },
+                    "science": {
+                        "score": 100,
+                        "completed": true
+                    },
+                    "english": {
+                        "score": 98,
+                        "completed": true
+                    },
+                    "history": {
+                        "score": 89,
+                        "completed": false
+                    }
+                },
+                "attendance": 90
+            }
+        }
+    ]
+}
