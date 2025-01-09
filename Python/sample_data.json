@@ -19,7 +19,7 @@
                     },
                     "history": {
                         "score": 78,
-                        "completed": true
+                        "completed": false
                     }
                 },
                 "attendance": 80
@@ -69,11 +69,16 @@
                     },
                     "history": {
                         "score": 89,
-                        "completed": true
+                        "completed": false
                     }
                 },
                 "attendance": 90
             }
         }
-    ]
+    ],
+    "avgMarks": {
+        "Alice": 87.66666666666667,
+        "Bob": 72.33333333333333,
+        "Charlie": 97.66666666666667
+    }
 }

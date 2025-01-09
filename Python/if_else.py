@@ -17,7 +17,7 @@ def findGrade(student):
 
 students = {"Rahul": {"math": 55, "physics": 55, "chemistry": 55},
             "Bhupendra": {"math": 100, "physics": 100, "chemistry": 100},
-            "Deependra": {"math": 33, "physics": 30, "chemistry": 30}}
+            "Deependra": {"math": 39, "physics": 39, "chemistry": 30}}
 
 findGrade(students["Bhupendra"])
 findGrade(students["Deependra"])
