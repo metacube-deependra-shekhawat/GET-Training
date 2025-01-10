@@ -1,5 +1,5 @@
 StudentID,Name,MathScore,ScienceScore,EnglishScore
-1,John Doe,85,90,88
+1,John Doe,"85",90,88
 2,Jane Smith,78,92,84
 3,Mike Brown,91,,85
 4,Lisa White,76,85,82
